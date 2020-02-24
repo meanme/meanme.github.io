@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Unity,UWP,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="meanme" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="OverviewIn this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to int">
+<meta name="keywords" content="Unity,UWP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Interoperability">
+<meta property="og:url" content="http://meanme.com/2017/08/10/unity-interoperability/index.html">
+<meta property="og:site_name" content="meanme">
+<meta property="og:description" content="OverviewIn this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to int">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://meanme.com/2017/08/10/unity-interoperability/live-00.png">
+<meta property="og:image" content="http://meanme.com/2017/08/10/unity-interoperability/build-settings.png">
+<meta property="og:image" content="http://meanme.com/2017/08/10/unity-interoperability/solution-explorer.png">
+<meta property="og:image" content="http://meanme.com/2017/08/10/unity-interoperability/low-poly-city.gif">
+<meta property="og:updated_time" content="2020-02-23T21:12:18.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity Interoperability">
+<meta name="twitter:description" content="OverviewIn this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to int">
+<meta name="twitter:image" content="http://meanme.com/2017/08/10/unity-interoperability/live-00.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://meanme.com/2017/08/10/unity-interoperability/">
+
+
+
+
+
+  <title>Unity Interoperability | meanme</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-31402499-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">meanme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Universal Windows Platform experiments and tutorials</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meanme.com/2017/08/10/unity-interoperability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matteo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="meanme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unity Interoperability</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T22:58:45-07:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/10/unity-interoperability/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/10/unity-interoperability/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>In this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to interact with the Unity view.</p>
+<p>After some research, I found the <a href="https://github.com/Microsoft/uwp-experiences/tree/master/apps/weather" target="_blank" rel="noopener">Atmosphere weather app example</a>, demonstrating interoperability between UWP and Unity. Is a fantastic resource and I recommend checking it out. We’ll go over step by step and create something similar, building a small low poly town.</p>
+<img src="/2017/08/10/unity-interoperability/live-00.png" title="Low Poly Town UWP Unity Interoperability">
+<a id="more"></a>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>Visual Studio 2015 RTM, (the minimum version is 14.0.23107.0). Please note that earlier versions, for example Visual Studio RC, are not supported in Unity 5.2.</p>
+<p>The Unity assets used for the project are Area730’s <a href="https://www.assetstore.unity3d.com/en/#!/content/50095" target="_blank" rel="noopener">Stylized Simple Cartoon City</a> and Demigiant’s <a href="https://www.assetstore.unity3d.com/en/#!/content/27676" target="_blank" rel="noopener">DOTween</a>.</p>
+<h2 id="Build-Settings"><a href="#Build-Settings" class="headerlink" title="Build Settings"></a>Build Settings</h2><p>In your Unity scripts you can declare <code>static</code> fields and access them from UWP. In the <code>MonoBehavior</code>‘s update loop you can keep track of changes and update your Unity view accordingly.</p>
+<p>If you need to pass data from Unity to UWP you can declare a <code>static</code> <code>EventHandler</code> in Unity, and register callbacks in UWP.</p>
+<p>Once you’ve implemented your logic, head to the Build Settings and configure your project. Use the following settings:</p>
+<ul>
+<li>Select <strong>Windows Store</strong> as your Platform</li>
+<li>Set <em>UWP Build Type</em> to <strong>XAML</strong></li>
+<li>Enable <strong>Unity C# Projects</strong></li>
+</ul>
+<img src="/2017/08/10/unity-interoperability/build-settings.png" title="Build Settings">
+<p>If you don’t have the Windows Store platform installed, Unity will prompt you to install (the download is named Metro Support).</p>
+<p>Selecting XAML instead of D3D for your build type will render the Unity game using a <a href="https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.SwapChainPanel" target="_blank" rel="noopener">SwapChainPanel</a> XAML control, used to render DirectX graphics within a XAML View.</p>
+<h2 id="Integrating-Unity-in-UWP"><a href="#Integrating-Unity-in-UWP" class="headerlink" title="Integrating Unity in UWP"></a>Integrating Unity in UWP</h2><p>Open the newly generated solution in Visual Studio and take a look at the Solution explorer.</p>
+<img src="/2017/08/10/unity-interoperability/solution-explorer.png" title="Solution Explorer">
+<p>In the <em>Assembly-CSharp</em> project you’ll find all the Unity runtime Scripts. Meanwhile the last project is the entry point for the UWP application. In <code>MainPage.xaml</code> you’ll see the generated SwapChainPanel used to render the Unity view:</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SwapChainPanel</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>DXSwapChainPanel<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Grid</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ExtendedSplashGrid<span class="token punctuation">"</span></span> <span class="token attr-name">Background</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FFFFFF<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Image</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ExtendedSplashImage<span class="token punctuation">"</span></span> 
+            <span class="token attr-name">Source</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Assets/SplashScreen.png<span class="token punctuation">"</span></span> 
+            <span class="token attr-name">VerticalAlignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Center<span class="token punctuation">"</span></span> 
+            <span class="token attr-name">HorizontalAlignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Center<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Grid</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SwapChainPanel</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>For this demo I have added a <code>ListView</code> in <code>MainPage.xaml</code>. Clicking on the items in the list will dynamically add a game object in the Unity view.<br>From the ItemClick handler in <code>MainView.xaml.cs</code> I call the static method  defined in my Unity script to instantiate a new prefab.</p>
+<h2 id="Assets-Loaded"><a href="#Assets-Loaded" class="headerlink" title="Assets Loaded"></a>Assets Loaded</h2><p>Unity views will take a little longer to load. If you try to interact with the Unity view before it’s loaded you’ll encounter unexpected results. One solution is to register an event handler in your Unity scripts and check when the assets are loaded in your UWP code before interacting with the Unity view.</p>
+<p>For example, in your Unity Controller add a new event</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">event</span> EventHandler AssetsLoaded<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> 
+    <span class="token keyword">if</span><span class="token punctuation">(</span>AssetsLoaded <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">AssetsLoaded</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>And in your UWP code behind register the corresponding event handler:</p>
+<pre class=" language-csharp"><code class="language-csharp">
+<span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">async</span> <span class="token keyword">void</span> <span class="token function">OnNavigatedTo</span><span class="token punctuation">(</span>NavigationEventArgs e<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">base</span><span class="token punctuation">.</span><span class="token function">OnNavigatedTo</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MyUnitytController<span class="token punctuation">.</span>AssetsLoaded <span class="token operator">+</span><span class="token operator">=</span> MyUnitytController_AssetsLoaded<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">MyUnitytController_AssetsLoaded</span><span class="token punctuation">(</span><span class="token keyword">object</span> sender<span class="token punctuation">,</span> EventArgs e<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// The Unity view is loaded! 😁🎉</span>
+    <span class="token comment" spellcheck="true">// You can start calling the methods defined in unity scripts</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This is especially useful if for example you’ve seed data you need to pass as soon as the Unity view is available.</p>
+<p>Lastly, since it would be jarring to launch a UWP application full screen I like to tweak <code>UnityGenerated.cs</code> and changed the preferred launch window mode from full screen to auto:</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">// Change from FullScreen to Auto</span>
+ApplicationView<span class="token punctuation">.</span>PreferredLaunchWindowingMode <span class="token operator">=</span> ApplicationViewWindowingMode<span class="token punctuation">.</span>Auto<span class="token punctuation">;</span>
+</code></pre>
+<h2 id="Thread-Safety"><a href="#Thread-Safety" class="headerlink" title="Thread-Safety"></a>Thread-Safety</h2><p>We’ve achieve basic interoperability between UWP and Unity. You can access static variables and methods defined in the <code>MonoBehaviour</code>s and leverage events.</p>
+<p>But if you attempt invoking methods that need to run on Unity’s main thread, for example trying to instantiate a new game object, you’ll soon encounter this exception:</p>
+<figcaption>can only be called from the main thread.</figcaption><pre class=" language-Load"><code class="language-Load">Constructors and field initializers will be executed from the loading thread when loading a scene.
+Don't use this function in the constructor or field initializers, 
+instead move initialization code to the Awake or Start function.</code></pre>
+<p>This is because Unity is not thread-safe, and you’re required to perform Unity API calls exclusively from the main thread.</p>
+<p>Knowing this limitation, you can easily get around it by creating a Unity singleton that polls for changes. Method invocations are queued, and processed in the singleton’s update method to ensure they are called from Unity’s main thread.</p>
+<p>I’m my demo I’ve used Pim DeWitte’s UnityMainThreadDispatcher available on <a href="https://github.com/PimDeWitte/UnityMainThreadDispatcher" target="_blank" rel="noopener">github</a>.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Here’s the finished result running on mobile and on desktop.</p>
+<img src="/2017/08/10/unity-interoperability/low-poly-city.gif" title="Low Poly City">
+<p>You can also check out the project on <a href="https://github.com/meanme/low-poly-city" target="_blank" rel="noopener">github</a>.</p>
+<p>It was a fun experiment. I do admit, if the end goal was simply displaying a list of prefabs, Unity’s native UI could have been a simpler option. But interoperability with UWP opens a vast realm of interesting possibilities.</p>
+<p>Imagine for example leveraging Cortana, InkCanvas or even Eye Control to control you Unity view. Could also be a novel way to approach data visualization, animating 3D models in Unity instead of displaying charts.</p>
+<p>I hope you found this article interesting and enjoyed it. Let me know if it sparks the creativity for something new.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+            <a href="/tags/UWP/" rel="tag"># UWP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/11/sticky-header/" rel="next" title="UWP Sticky Header">
+                <i class="fa fa-chevron-left"></i> UWP Sticky Header
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/06/pull-to-refresh/" rel="prev" title="Pull to Refresh in UWP">
+                Pull to Refresh in UWP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matteo">
+          <p class="site-author-name" itemprop="name">Matteo</p>
+           
+              <p class="site-description motion-element" itemprop="description">Windows 10 development blog, with examples, tutorials, and demos</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meanme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meanme_com" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/mmarinucci/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                      LinkedIn
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements"><span class="nav-number">2.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-Settings"><span class="nav-number">3.</span> <span class="nav-text">Build Settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integrating-Unity-in-UWP"><span class="nav-number">4.</span> <span class="nav-text">Integrating Unity in UWP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assets-Loaded"><span class="nav-number">5.</span> <span class="nav-text">Assets Loaded</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread-Safety"><span class="nav-number">6.</span> <span class="nav-text">Thread-Safety</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">7.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matteo</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://meanme.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://meanme.com/2017/08/10/unity-interoperability/';
+          this.page.identifier = '2017/08/10/unity-interoperability/';
+          this.page.title = 'Unity Interoperability';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://meanme.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

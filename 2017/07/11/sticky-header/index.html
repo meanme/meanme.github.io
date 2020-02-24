@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Animations,UWP,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="meanme" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="A Familiar UXWhen thinking about user navigation we often look at the top of the page, scouting for navigation links, a menu, or a search bar somewhere in the top header. Try playing a round of Design">
+<meta name="keywords" content="Animations,UWP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UWP Sticky Header">
+<meta property="og:url" content="http://meanme.com/2017/07/11/sticky-header/index.html">
+<meta property="og:site_name" content="meanme">
+<meta property="og:description" content="A Familiar UXWhen thinking about user navigation we often look at the top of the page, scouting for navigation links, a menu, or a search bar somewhere in the top header. Try playing a round of Design">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://meanme.com/2017/07/11/sticky-header/sticky-header-complete-710.gif">
+<meta property="og:image" content="http://meanme.com/2017/07/11/sticky-header/sticky-header-animations-prototype.gif">
+<meta property="og:image" content="http://meanme.com/2017/07/11/sticky-header/sticky-header-only-710.gif">
+<meta property="og:image" content="http://meanme.com/2017/07/11/sticky-header/sticky-header-complete-710.gif">
+<meta property="og:updated_time" content="2020-02-23T21:12:18.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UWP Sticky Header">
+<meta name="twitter:description" content="A Familiar UXWhen thinking about user navigation we often look at the top of the page, scouting for navigation links, a menu, or a search bar somewhere in the top header. Try playing a round of Design">
+<meta name="twitter:image" content="http://meanme.com/2017/07/11/sticky-header/sticky-header-complete-710.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://meanme.com/2017/07/11/sticky-header/">
+
+
+
+
+
+  <title>UWP Sticky Header | meanme</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-31402499-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">meanme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Universal Windows Platform experiments and tutorials</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meanme.com/2017/07/11/sticky-header/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matteo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="meanme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UWP Sticky Header</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-11T19:03:36-07:00">
+                2017-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/11/sticky-header/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/11/sticky-header/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="A-Familiar-UX"><a href="#A-Familiar-UX" class="headerlink" title="A Familiar UX"></a>A Familiar UX</h3><p>When thinking about user navigation we often look at the top of the page, scouting for navigation links, a menu, or a search bar somewhere in the top header.</p>
+<p>Try playing a round of <a href="http://dedesigntheweb.com" target="_blank" rel="noopener">Design the Web</a>, where you’ve to guess the site from its mocks, to see how many desktop applications display a prominent header at the top.</p>
+<p>Familiarity can be good and in this post I will go over implementing a shrinking sticky header. After scrolling our page the header will shrink and remain visible, anchored at the top.</p>
+<img src="/2017/07/11/sticky-header/sticky-header-complete-710.gif" title="Final Result">
+<a id="more"></a>
+<h3 id="Composition-Animations"><a href="#Composition-Animations" class="headerlink" title="Composition Animations"></a>Composition Animations</h3><p>To drive the scale and the position of our header elements we are going to use expression animations. The position of the main outer ScrollViewer is going to be used in our expressions to determine the progress of the other animations.</p>
+<p>Windows 10 Creators Update introduced <strong>ManipulationPropertySet</strong>, a special type of <a href="https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Composition.CompositionPropertySet" target="_blank" rel="noopener">CompositionPropertySet</a> that exposes the properties in a ScrollViewer. To see how far down we’ve scrolled we can simply read the Translation.Y value from the set. You can access the ManipulationPropertySet of other controls like (i.e. ListView, GridView, etc.) but for our sticky header we’re going to use the main outer ScrollViewer.</p>
+<p>Here’s a prototype showing a sequential break down of the animations happening behind the scenes of our UWP app.</p>
+<img src="/2017/07/11/sticky-header/sticky-header-animations-prototype.gif" title="Animation Prototype">
+<h3 id="XAML"><a href="#XAML" class="headerlink" title="XAML"></a>XAML</h3><p>The XAML View will be very simple. All the content is going to be wrapped in a ScrollViewer. Inside the ScrollViewer we’re going to have a Grid with 2 rows: the header and the rest of the content.<br>Here’s the XAML markup:</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ScrollViewer</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MainScrollViewer<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Grid</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MainContentsGrid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Grid.RowDefinitions</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RowDefinition</span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Auto<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RowDefinition</span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Grid.RowDefinitions</span><span class="token punctuation">></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Grid</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>MainContents<span class="token punctuation">"</span></span> <span class="token attr-name">Grid.Row</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPanel</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#DAECF4<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#91C5DD<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#DAECF4<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#91C5DD<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#DAECF4<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#91C5DD<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#DAECF4<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#91C5DD<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#DAECF4<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#91C5DD<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackPanel</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Grid</span><span class="token punctuation">></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPanel</span> <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ScrollHeader<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPanel</span> <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Horizontal<span class="token punctuation">"</span></span> <span class="token attr-name">Background</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#2D2D30<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Border</span>
+                    <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>HeaderLogo<span class="token punctuation">"</span></span>
+                    <span class="token attr-name">Width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span>
+                    <span class="token attr-name">BorderThickness</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Ellipse</span> <span class="token attr-name">Fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{StaticResource HeaderLogoGradient}<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Border</span><span class="token punctuation">></span></span>
+
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPanel</span> <span class="token attr-name">VerticalAlignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Center<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextBlock</span> 
+                    <span class="token attr-name"><span class="token namespace">x:</span>Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>HeaderText<span class="token punctuation">"</span></span> <span class="token attr-name">FontSize</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>25<span class="token punctuation">"</span></span> 
+                    <span class="token attr-name">Text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Sticky Header<span class="token punctuation">"</span></span> <span class="token attr-name">Foreground</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FFFFFF<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackPanel</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackPanel</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackPanel</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Grid</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ScrollViewer</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Lastly, add a <code>Loaded</code> event handler to your Page. We’re going to move to the code behind next to implement the composition animations for our header.</p>
+<h3 id="Loaded"><a href="#Loaded" class="headerlink" title="Loaded"></a>Loaded</h3><p>In our Loaded handler we’ve to perform the following operations</p>
+<ul>
+<li>Get the Manipulation Property Set from the MainScrollViewer</li>
+<li>Define an expression animation to “lock” the translation of our sticky header</li>
+<li>Define an expression to determine the progress of our animations based on the translation of the scroller</li>
+<li>Define the animations to scale or move the visual elements in our sticky header</li>
+</ul>
+<p>Let’s start obtaining the Manipulation Property Set and defining our progress expression: we want the animations to go from 0 to 100% after scrolling 100 pixels.<br>We are going to reuse the progress expression in our animations moving forward. In the case of the scroll header we’re going to cap how far the element can go offscreen to only 50 pixels.</p>
+<pre class=" language-csharp"><code class="language-csharp">CompositionPropertySet scrollerPropertySet <span class="token operator">=</span> ElementCompositionPreview<span class="token punctuation">.</span><span class="token function">GetScrollViewerManipulationPropertySet</span><span class="token punctuation">(</span>MainScrollViewer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Compositor compositor <span class="token operator">=</span> scrollerPropertySet<span class="token punctuation">.</span>Compositor<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Get the visual that represents our HeaderTextBlock </span>
+<span class="token comment" spellcheck="true">// And define the progress animation string</span>
+<span class="token keyword">var</span> headerVisual <span class="token operator">=</span> ElementCompositionPreview<span class="token punctuation">.</span><span class="token function">GetElementVisual</span><span class="token punctuation">(</span>ScrollHeader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+String progress <span class="token operator">=</span> <span class="token string">"Clamp(Abs(scroller.Translation.Y) / 100.0, 0.0, 1.0)"</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Create the expression and add in our progress string.</span>
+<span class="token keyword">var</span> textExpression <span class="token operator">=</span> compositor<span class="token punctuation">.</span><span class="token function">CreateExpressionAnimation</span><span class="token punctuation">(</span><span class="token string">"Lerp(1.5, 1, "</span> <span class="token operator">+</span> progress <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+textExpression<span class="token punctuation">.</span><span class="token function">SetReferenceParameter</span><span class="token punctuation">(</span><span class="token string">"scroller"</span><span class="token punctuation">,</span> scrollerPropertySet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Shift the header by 50 pixels when scrolling down</span>
+<span class="token keyword">var</span> offsetExpression <span class="token operator">=</span> compositor<span class="token punctuation">.</span><span class="token function">CreateExpressionAnimation</span><span class="token punctuation">(</span>$<span class="token string">"-scroller.Translation.Y - {progress} * 50"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+offsetExpression<span class="token punctuation">.</span><span class="token function">SetReferenceParameter</span><span class="token punctuation">(</span><span class="token string">"scroller"</span><span class="token punctuation">,</span> scrollerPropertySet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+headerVisual<span class="token punctuation">.</span><span class="token function">StartAnimation</span><span class="token punctuation">(</span><span class="token string">"Offset.Y"</span><span class="token punctuation">,</span> offsetExpression<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Play around with it to get a feel of what’s going on.<br>Running the app right now you’ll see the vertical offset of the header is constrained when scrolling past the threshold.</p>
+<img src="/2017/07/11/sticky-header/sticky-header-only-710.gif" title="Sticky Header Vertical Offset Constrain">
+<p>Next, we need to animate the logo. We need to change the scale as well as the position to make sure it remains centered. The top 50 pixels of the header are disappearing above the top of the page, so we’ll push the logo down by the same amount.</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">// Logo scale and transform</span>
+<span class="token keyword">var</span> logoHeaderScaleAnimation <span class="token operator">=</span> compositor<span class="token punctuation">.</span><span class="token function">CreateExpressionAnimation</span><span class="token punctuation">(</span><span class="token string">"Lerp(Vector2(1,1), Vector2(0.5, 0.5), "</span> <span class="token operator">+</span> progress <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+logoHeaderScaleAnimation<span class="token punctuation">.</span><span class="token function">SetReferenceParameter</span><span class="token punctuation">(</span><span class="token string">"scroller"</span><span class="token punctuation">,</span> scrollerPropertySet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> logoVisual <span class="token operator">=</span> ElementCompositionPreview<span class="token punctuation">.</span><span class="token function">GetElementVisual</span><span class="token punctuation">(</span>HeaderLogo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+logoVisual<span class="token punctuation">.</span><span class="token function">StartAnimation</span><span class="token punctuation">(</span><span class="token string">"Scale.xy"</span><span class="token punctuation">,</span> logoHeaderScaleAnimation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> logoVisualOffsetAnimation <span class="token operator">=</span> compositor<span class="token punctuation">.</span><span class="token function">CreateExpressionAnimation</span><span class="token punctuation">(</span>$<span class="token string">"Lerp(0, 50, {progress})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+logoVisualOffsetAnimation<span class="token punctuation">.</span><span class="token function">SetReferenceParameter</span><span class="token punctuation">(</span><span class="token string">"scroller"</span><span class="token punctuation">,</span> scrollerPropertySet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+logoVisual<span class="token punctuation">.</span><span class="token function">StartAnimation</span><span class="token punctuation">(</span><span class="token string">"Offset.Y"</span><span class="token punctuation">,</span> logoVisualOffsetAnimation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The last piece is the text. We’re simply going to change the offset, and use a Vector3 in the expression for a change.</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">// Offset the header title</span>
+Visual textVisual <span class="token operator">=</span> ElementCompositionPreview<span class="token punctuation">.</span><span class="token function">GetElementVisual</span><span class="token punctuation">(</span>HeaderText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Vector3 finalOffset <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vector3</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> headerOffsetAnimation <span class="token operator">=</span> compositor<span class="token punctuation">.</span><span class="token function">CreateExpressionAnimation</span><span class="token punctuation">(</span>$<span class="token string">"Lerp(Vector3(0,0,0), finalOffset, {progress})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+headerOffsetAnimation<span class="token punctuation">.</span><span class="token function">SetReferenceParameter</span><span class="token punctuation">(</span><span class="token string">"scroller"</span><span class="token punctuation">,</span> scrollerPropertySet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+headerOffsetAnimation<span class="token punctuation">.</span><span class="token function">SetVector3Parameter</span><span class="token punctuation">(</span><span class="token string">"finalOffset"</span><span class="token punctuation">,</span> finalOffset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+textVisual<span class="token punctuation">.</span><span class="token function">StartAnimation</span><span class="token punctuation">(</span><span class="token function">nameof</span><span class="token punctuation">(</span>Visual<span class="token punctuation">.</span>Offset<span class="token punctuation">)</span><span class="token punctuation">,</span> headerOffsetAnimation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>All set! Running the application now you can observe the sticky header.</p>
+<img src="/2017/07/11/sticky-header/sticky-header-complete-710.gif" title="Sticky Header Completed">
+<p>Expression animations allow to use the state of your controls to achieve great results with just few lines of code.<br>Hope you enjoyed this article and get to create something fun with composition animations. Check out the source code on <a href="https://github.com/meanme/uwp-sticky-header" target="_blank" rel="noopener">Github</a> and don’t hesitate to reach out if you have any feedback!</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Animations/" rel="tag"># Animations</a>
+          
+            <a href="/tags/UWP/" rel="tag"># UWP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/11/intro-to-composition-animations/" rel="next" title="Intro to Composition Animations">
+                <i class="fa fa-chevron-left"></i> Intro to Composition Animations
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/10/unity-interoperability/" rel="prev" title="Unity Interoperability">
+                Unity Interoperability <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matteo">
+          <p class="site-author-name" itemprop="name">Matteo</p>
+           
+              <p class="site-description motion-element" itemprop="description">Windows 10 development blog, with examples, tutorials, and demos</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meanme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meanme_com" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/mmarinucci/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                      LinkedIn
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Familiar-UX"><span class="nav-number">1.</span> <span class="nav-text">A Familiar UX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composition-Animations"><span class="nav-number">2.</span> <span class="nav-text">Composition Animations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XAML"><span class="nav-number">3.</span> <span class="nav-text">XAML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loaded"><span class="nav-number">4.</span> <span class="nav-text">Loaded</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matteo</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://meanme.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://meanme.com/2017/07/11/sticky-header/';
+          this.page.identifier = '2017/07/11/sticky-header/';
+          this.page.title = 'UWP Sticky Header';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://meanme.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

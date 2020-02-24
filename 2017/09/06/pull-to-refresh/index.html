@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="UWP,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="meanme" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="OverviewPull to Refresh is a widely adopted mobile pattern, used to refresh a list fetching the latest entries.It was originally introduced by Twitter, (for which they hold the patent) and is widely u">
+<meta name="keywords" content="UWP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pull to Refresh in UWP">
+<meta property="og:url" content="http://meanme.com/2017/09/06/pull-to-refresh/index.html">
+<meta property="og:site_name" content="meanme">
+<meta property="og:description" content="OverviewPull to Refresh is a widely adopted mobile pattern, used to refresh a list fetching the latest entries.It was originally introduced by Twitter, (for which they hold the patent) and is widely u">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://meanme.com/2017/09/06/pull-to-refresh/dribble-00.gif">
+<meta property="og:image" content="http://meanme.com/2017/09/06/pull-to-refresh/yelp-03.gif">
+<meta property="og:image" content="http://meanme.com/2017/09/06/pull-to-refresh/pull-to-refresh-00.gif">
+<meta property="og:image" content="http://meanme.com/2017/09/06/pull-to-refresh/pull-to-refresh-01.gif">
+<meta property="og:image" content="http://meanme.com/2017/09/06/pull-to-refresh/pull-to-refresh-02.gif">
+<meta property="og:updated_time" content="2020-02-23T21:12:17.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pull to Refresh in UWP">
+<meta name="twitter:description" content="OverviewPull to Refresh is a widely adopted mobile pattern, used to refresh a list fetching the latest entries.It was originally introduced by Twitter, (for which they hold the patent) and is widely u">
+<meta name="twitter:image" content="http://meanme.com/2017/09/06/pull-to-refresh/dribble-00.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://meanme.com/2017/09/06/pull-to-refresh/">
+
+
+
+
+
+  <title>Pull to Refresh in UWP | meanme</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-31402499-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">meanme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Universal Windows Platform experiments and tutorials</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meanme.com/2017/09/06/pull-to-refresh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matteo">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="meanme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Pull to Refresh in UWP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T07:53:46-07:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/06/pull-to-refresh/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/06/pull-to-refresh/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Pull to Refresh is a widely adopted mobile pattern, used to refresh a list fetching the latest entries.<br>It was originally introduced by Twitter, (<a href="http://appft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&amp;Sect2=HITOFF&amp;u=%2Fnetahtml%2FPTO%2Fsearch-adv.html&amp;r=1&amp;f=G&amp;l=50&amp;d=PG01&amp;p=1&amp;S1=20100199180.PGNR.&amp;OS=dn/20100199180&amp;RS=DN/20100199180" target="_blank" rel="noopener">for which they hold the patent</a>) and is widely used in applications with a feed or timeline where the data is refreshed often.<br>In this post I’ll compare some libraries to implement Pull to Refresh in your Universal Windows Platform application.</p>
+<h2 id="A-case-for-Pull-to-Refresh"><a href="#A-case-for-Pull-to-Refresh" class="headerlink" title="A case for Pull to Refresh"></a>A case for Pull to Refresh</h2><p>Despite the wide spread of the pattern, a case could be made is at times not the best user experience:</p>
+<h4 id="Avoid-When"><a href="#Avoid-When" class="headerlink" title="Avoid When"></a>Avoid When</h4><ul>
+<li>Is not immediately discoverable</li>
+<li>The user is responsible for </li>
+<li>Being a mobile first pattern the UX will be different for different platform</li>
+<li>If the content refresh rate is not frequent enough</li>
+</ul>
+<!-- If you provide enough content to keep the user engaged for the [duration of their session](https://www.statista.com/statistics/202485/average-ipad-app-session-length-by-app-categories/) you might not need to use pull to refresh. -->
+<p>On the other hand, there are cases where pull to Refresh is a great choice:</p>
+<h4 id="Great-When"><a href="#Great-When" class="headerlink" title="Great When"></a>Great When</h4><ul>
+<li>Content updates frequently</li>
+<li>Content follows a chronological sorting</li>
+<li>Is a familiar gesture on mobile</li>
+<li>Provides the opportunity to leverage the area above the list for branding and custom animations</li>
+</ul>
+<p>Pull to Refresh offers the ability to embed your personality and create fun animations, beyond the simple spinner, offering a moment of delight to the users.</p>
+<img src="/2017/09/06/pull-to-refresh/dribble-00.gif" title="Yup Nguyen" alt="s Dribble">
+<a id="more"></a>
+<img src="/2017/09/06/pull-to-refresh/yelp-03.gif" title="Yelp" alt="s Mascot Hammy launched into space">
+<h2 id="UWP-Libraries"><a href="#UWP-Libraries" class="headerlink" title="UWP Libraries"></a>UWP Libraries</h2><p>After some research, I found some controls and packages that offer support for Pull to Refresh more or less out of the box. Here’s a comparative analysis of the different options.</p>
+<h3 id="UWP-Control"><a href="#UWP-Control" class="headerlink" title="UWP Control"></a><a href="https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/pull-to-refresh" target="_blank" rel="noopener">UWP Control</a></h3><p>In the official Microsoft docs, Pull to Refresh is implemented with a <a href="https://github.com/Microsoft/Windows-universal-samples/blob/master/Samples/XamlPullToRefresh/cs/RefreshableListView.cs" target="_blank" rel="noopener">RefreshableListView</a> Templated Control, that extends a ListView.</p>
+<img src="/2017/09/06/pull-to-refresh/pull-to-refresh-00.gif" title="UWP Control">
+<p>The component will monitor direct manipulation of the list’s internal ScrollViewer, fire relevant events when the refresh is triggered or the pull progress changes. Noticeably this control exposes two scalar properties: <strong>PullRatio</strong> and <strong>PullProgress</strong>, to be used the ScrollViewer state and the refresh indicator layout.</p>
+<p>Customizing this Pull to Refresh implementation required the most code changes, but provides a comprehensive set of options for customization, as it exposes every relevant aspect of this pattern. </p>
+<h3 id="PulltToRefresh-UWP"><a href="#PulltToRefresh-UWP" class="headerlink" title="PulltToRefresh.UWP"></a><a href="https://github.com/MS-UAP/PullToRefresh.UWP" target="_blank" rel="noopener">PulltToRefresh.UWP</a></h3><img src="/2017/09/06/pull-to-refresh/pull-to-refresh-01.gif" title="PullToRefresh.UWP">
+<p>This implementation comes bundled in a NuGet package so in the Package Manager you can simply type</p>
+<pre class=" language-bash"><code class="language-bash">PM<span class="token operator">></span> Install-Package PullToRefresh.UWP
+</code></pre>
+<p>In your XAML add the namespace reference</p>
+<pre class=" language-xaml"><code class="language-xaml">xmlns:pr="using:PullToRefresh.UWP"
+</code></pre>
+<p>and you can start using the <code>PullToRefreshBox</code> component to wrap a ListView or GridView and enable Pull to Refresh. The final XAML will look something like:</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">pr:</span>PullToRefreshBox</span> <span class="token attr-name">RefreshInvoked</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>PullToRefreshBox_RefreshInvoked<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">pr:</span>PullToRefreshBox.TopIndicatorTemplate</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTemplate</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">pr:</span>PullRefreshProgressControl</span> 
+              <span class="token attr-name">Progress</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{Binding}<span class="token punctuation">"</span></span>
+              <span class="token attr-name">PullToRefreshText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Pull<span class="token punctuation">"</span></span>
+              <span class="token attr-name">ReleaseToRefreshText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Release<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTemplate</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">pr:</span>PullToRefreshBox.TopIndicatorTemplate</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ListView</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ListView.ItemTemplate</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTemplate</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle</span> <span class="token attr-name">Width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">Height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Rectangle.Fill</span><span class="token punctuation">></span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SolidColorBrush</span> <span class="token attr-name">Color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{Binding}<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Rectangle.Fill</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Rectangle</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTemplate</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ListView.ItemTemplate</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ListView</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">pr:</span>PullToRefreshBox</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Internally, PullToRefresh.UWP overrides <strong>OnApplyTemplate</strong> to center the top content indicator and register a callback for the ScrollViewer direct manipulation event. Once the drag gesture is released the control checks if the threshold for a refresh has been triggered.</p>
+<p>I like the ease of use of this control. If a simple indicator will suffice, and you don’t need access to the underlying state PullToRefresh.UWP comes really handy.</p>
+<h3 id="JustinXinLiu’s-Pull-To-Refresh-XAML"><a href="#JustinXinLiu’s-Pull-To-Refresh-XAML" class="headerlink" title="JustinXinLiu’s Pull To Refresh XAML"></a><a href="https://github.com/JustinXinLiu/PullToRefreshUWP_WindowsComposition" target="_blank" rel="noopener">JustinXinLiu’s Pull To Refresh XAML</a></h3><p>After finding the UWP Control and PullToRefresh.UWP I kept searching and found Justin’s Pull to Refresh XAML project on GitHub.</p>
+<p>One shortcoming of the two previous libraries is that the refresh indicator disappears upon release, and doesn’t remain on screen while the data fetching is in progress. Justin’s Pull to Refresh XAML obviates to this problem registering event handlers for the composition target’s rendering and manipulating the top section offset using composition animations:</p>
+<pre class=" language-csharp"><code class="language-csharp">Windows<span class="token punctuation">.</span>UI<span class="token punctuation">.</span>Xaml<span class="token punctuation">.</span>Media<span class="token punctuation">.</span>CompositionTarget<span class="token punctuation">.</span>Rendering <span class="token operator">+</span><span class="token operator">=</span> OnCompositionTargetRendering<span class="token punctuation">;</span>
+</code></pre>
+<p>Composition animations are used to update the opacity and vertical offset of the refresh icon. When the icon is pulled down fast enough to trigger the refresh, the ScrollViewer Offset.Y is locked in place until the fetch is complete and the composition animations are restored. In the <a href="https://github.com/JustinXinLiu/PullToRefreshUWP_WindowsComposition" target="_blank" rel="noopener">Github repo</a> you can find different implementation variants using Composition animations and XAML Behavior triggers.</p>
+<p>I found Justin’s Pull to Refresh the easiest to adopt and by leveraging Composition animations customizing the animation parameters becomes very easy. Here’s a final demo using Pull to Refresh to populate a list of airports. The refresh indicator animation is performed using AirBnB’s <a href="https://airbnb.design/introducing-lottie/" target="_blank" rel="noopener">Lottie</a> for <a href="https://github.com/azchohfi/LottieUWP" target="_blank" rel="noopener">UWP</a>, and re-purposing some of the <a href="https://www.lottiefiles.com/" target="_blank" rel="noopener">sample files</a>.</p>
+<img src="/2017/09/06/pull-to-refresh/pull-to-refresh-02.gif" title="Justin Liu" alt="s PullToRefreshXaml Demo">
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Whether or not Pull to Refresh is the right pattern varies from case to case, but when user experience calls for it, I see it as an opportunity to inject some personality and delight into the application.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UWP/" rel="tag"># UWP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/unity-interoperability/" rel="next" title="Unity Interoperability">
+                <i class="fa fa-chevron-left"></i> Unity Interoperability
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/22/affordability-calculator-animations/" rel="prev" title="Trulia's Affordability Calculator Animations">
+                Trulia's Affordability Calculator Animations <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Matteo">
+          <p class="site-author-name" itemprop="name">Matteo</p>
+           
+              <p class="site-description motion-element" itemprop="description">Windows 10 development blog, with examples, tutorials, and demos</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meanme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meanme_com" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/mmarinucci/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                    
+                      LinkedIn
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#A-case-for-Pull-to-Refresh"><span class="nav-number"></span> <span class="nav-text">A case for Pull to Refresh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Avoid-When"><span class="nav-number">0.1.</span> <span class="nav-text">Avoid When</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Great-When"><span class="nav-number">0.2.</span> <span class="nav-text">Great When</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UWP-Libraries"><span class="nav-number"></span> <span class="nav-text">UWP Libraries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UWP-Control"><span class="nav-number">1.</span> <span class="nav-text">UWP Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PulltToRefresh-UWP"><span class="nav-number">2.</span> <span class="nav-text">PulltToRefresh.UWP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JustinXinLiu’s-Pull-To-Refresh-XAML"><span class="nav-number">3.</span> <span class="nav-text">JustinXinLiu’s Pull To Refresh XAML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matteo</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://meanme.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://meanme.com/2017/09/06/pull-to-refresh/';
+          this.page.identifier = '2017/09/06/pull-to-refresh/';
+          this.page.title = 'Pull to Refresh in UWP';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://meanme.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
