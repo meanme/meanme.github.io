@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://meanme.com/"/>
-  <updated>2020-02-24T02:46:57.693Z</updated>
+  <updated>2020-02-24T02:50:04.555Z</updated>
   <id>http://meanme.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hanzi-dungeon</title>
+    <title>Hanzi Dungeon</title>
     <link href="http://meanme.com/2020/02/23/hanzi-dungeon/"/>
     <id>http://meanme.com/2020/02/23/hanzi-dungeon/</id>
     <published>2020-02-24T01:36:37.000Z</published>
-    <updated>2020-02-24T02:46:57.693Z</updated>
+    <updated>2020-02-24T02:50:04.555Z</updated>
     
     <content type="html"><![CDATA[<img src="/2020/02/23/hanzi-dungeon/hero.png" title="Hanzi Dungeon"><p>There are several studies on the benefits of language learning on the brain, from fighting aging, to boosting cognitive functions. The fact is, it remains really hard, especially with a full time job, and limited opportunities to travel.</p><p>To motivate myself to study I decided to sign up for the <a href="http://www.chinesetest.cn/ChangeLan.do?languge=en" target="_blank" rel="noopener">HSK exam</a> about a year ago, and that’s how I started reviewing decks of flashcards. Answering to flashcard prompts correctly brought me great satisfaction, but I started asking myself… is there a way to make the process more fun?</p><a id="more"></a><h1 id="Gamified-language-learning"><a href="#Gamified-language-learning" class="headerlink" title="Gamified language learning"></a>Gamified language learning</h1><p>I started researching gamified apps, like <a href="https://www.duolingo.com/" target="_blank" rel="noopener">Duolingo</a>, but in terms of retention, flashcard decks on <a href="https://www.pleco.com/" target="_blank" rel="noopener">Pleco</a> seemed to produce the best. In his book <a href="https://www.goodreads.com/book/show/19661852-fluent-forever" target="_blank" rel="noopener">Fluent Forever</a> Gabriel Wyner covers the history and theory of spaced repetition, and why I found it so effective.<br>That’s when I started thinking about creating a game to learning Chinese based on spaced repetition</p><img src="/2020/02/23/hanzi-dungeon/combat.png" title="Flashcard based combat"><h1 id="Game-requirements-and-Spaced-Repetition"><a href="#Game-requirements-and-Spaced-Repetition" class="headerlink" title="Game requirements and Spaced Repetition"></a>Game requirements and Spaced Repetition</h1><p>When I started writing down the requirements and ideas for a possible game, I stumbled upon the <a href="https://supermemo.guru/wiki/SuperMemo_1.0_for_DOS_(1987" target="_blank" rel="noopener">Super Memo 2</a>#Algorithm_SM-2) algorithm to maximize the effectiveness of flashcard reviews. I modified the original algorithm to allow for continuous play, instead of only presenting the same flashcards after a given number of days, to avoid running out of cards.</p><h1 id="Pixel-art-and-roguelikes"><a href="#Pixel-art-and-roguelikes" class="headerlink" title="Pixel art and roguelikes"></a>Pixel art and roguelikes</h1><p>While Hanzi Dungeon is far from a complete study solution, I hope it still proves a fun way to review the HSK flashcards, and practice Chinese vocabulary.</p><p>I tried to combine my love for pixel art (thanks to the wonderful assets created by <a href="https://pita.itch.io/" target="_blank" rel="noopener">Pita</a>), and roguelike games, going for the SNES esthetics.</p><img src="/2020/02/23/hanzi-dungeon/intro.png" title="Hanzi Dungeon"><p>If you’re studying a new language I wish you the best of luck and success in your endeavors. If you happen to be practicing for your HSK exam, feel free to check out <a href="https://apps.apple.com/us/app/hanzi-dungeon/id1461685505" target="_blank" rel="noopener">Hanzi Dungeon for iOS</a></p>]]></content>
     
