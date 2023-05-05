@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>meanme</title>
   
-  <subtitle>Universal Windows Platform experiments and tutorials</subtitle>
+  <subtitle>Coding experiments and tutorials</subtitle>
   <link href="http://meanme.com/atom.xml" rel="self"/>
   
   <link href="http://meanme.com/"/>
-  <updated>2023-04-30T22:00:51.245Z</updated>
+  <updated>2023-05-03T16:15:47.606Z</updated>
   <id>http://meanme.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dropeffect</title>
+    <link href="http://meanme.com/2023/04/30/dropeffect/"/>
+    <id>http://meanme.com/2023/04/30/dropeffect/</id>
+    <published>2023-05-01T04:35:51.000Z</published>
+    <updated>2023-05-03T16:15:47.606Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="DropEffect"><a href="#DropEffect" class="headerlink" title="DropEffect"></a>DropEffect</h1><p>Clear shapes, score high! DropEffect - minimalist puzzle game in space.</p><p>Dive into DropEffect, in space where your objective is to match spheres to clear them and achieve the highest score.</p><p>With glowing numeral planets and a soothing soundtrack, DropEffect provides a hypnotic experience. Use your strategic skills to clear as many spheres as you can.</p><p>Are you up for it? How would you fare in the leaderboards?<br>Warp speed!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;DropEffect&quot;&gt;&lt;a href=&quot;#DropEffect&quot; class=&quot;headerlink&quot; title=&quot;DropEffect&quot;&gt;&lt;/a&gt;DropEffect&lt;/h1&gt;&lt;p&gt;Clear shapes, score high! DropEffect -</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hanzi Dungeon</title>
