@@ -1,0 +1,146 @@
+---
+title: "Unity interoperability"
+description: "Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone."
+image: "../../public/blogs/unity-interoperability/live-00.png"
+publishedAt: "2017-08-10"
+updatedAt: "2017-08-10"
+author: "meanme"
+isPublished: true
+tags:
+- Unity
+- UWP
+---
+
+
+## Overview
+In this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to interact with the Unity view.
+
+After some research, I found the [Atmosphere weather app example](https://github.com/Microsoft/uwp-experiences/tree/master/apps/weather), demonstrating interoperability between UWP and Unity. Is a fantastic resource and I recommend checking it out. We'll go over step by step and create something similar, building a small low poly town.
+
+
+
+
+
+## Requirements
+Visual Studio 2015 RTM, (the minimum version is 14.0.23107.0). Please note that earlier versions, for example Visual Studio RC, are not supported in Unity 5.2.
+
+The Unity assets used for the project are Area730's [Stylized Simple Cartoon City](https://www.assetstore.unity3d.com/en/#!/content/50095) and Demigiant's [DOTween](https://www.assetstore.unity3d.com/en/#!/content/27676).
+
+## Build Settings
+In your Unity scripts you can declare `static` fields and access them from UWP. In the `MonoBehavior`'s update loop you can keep track of changes and update your Unity view accordingly.
+
+If you need to pass data from Unity to UWP you can declare a `static` `EventHandler` in Unity, and register callbacks in UWP.
+
+Once you've implemented your logic, head to the Build Settings and configure your project. Use the following settings:
+
+* Select **Windows Store** as your Platform
+* Set *UWP Build Type* to **XAML**
+* Enable **Unity C# Projects**
+
+<Image
+  src="/blogs/unity-interoperability/build-settings.png"
+  width="600"
+  height="581"
+  alt="Build Settings"
+  sizes="100vw"
+/>
+
+If you don't have the Windows Store platform installed, Unity will prompt you to install (the download is named Metro Support).
+
+Selecting XAML instead of D3D for your build type will render the Unity game using a [SwapChainPanel](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.SwapChainPanel) XAML control, used to render DirectX graphics within a XAML View.
+
+## Integrating Unity in UWP
+Open the newly generated solution in Visual Studio and take a look at the Solution explorer.
+
+
+
+In the *Assembly-CSharp* project you'll find all the Unity runtime Scripts. Meanwhile the last project is the entry point for the UWP application. In `MainPage.xaml` you'll see the generated SwapChainPanel used to render the Unity view:
+
+``` xml
+<SwapChainPanel x:Name="DXSwapChainPanel">
+    <Grid x:Name="ExtendedSplashGrid" Background="#FFFFFF">
+        <Image x:Name="ExtendedSplashImage" 
+            Source="Assets/SplashScreen.png" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"/>
+    </Grid>
+</SwapChainPanel>
+```
+
+For this demo I have added a `ListView` in `MainPage.xaml`. Clicking on the items in the list will dynamically add a game object in the Unity view.
+From the ItemClick handler in `MainView.xaml.cs` I call the static method  defined in my Unity script to instantiate a new prefab.
+
+## Assets Loaded
+Unity views will take a little longer to load. If you try to interact with the Unity view before it's loaded you'll encounter unexpected results. One solution is to register an event handler in your Unity scripts and check when the assets are loaded in your UWP code before interacting with the Unity view.
+
+For example, in your Unity Controller add a new event
+
+``` csharp
+public static event EventHandler AssetsLoaded;
+
+void Start()
+{ 
+    if(AssetsLoaded != null)
+    {
+        AssetsLoaded(null, null);
+    }
+}
+```
+
+And in your UWP code behind register the corresponding event handler:
+
+``` csharp
+
+protected override async void OnNavigatedTo(NavigationEventArgs e)
+{
+    base.OnNavigatedTo(e);
+    MyUnitytController.AssetsLoaded += MyUnitytController_AssetsLoaded;
+}
+
+private void MyUnitytController_AssetsLoaded(object sender, EventArgs e)
+{
+    // The Unity view is loaded! 😁🎉
+    // You can start calling the methods defined in unity scripts
+}
+```
+
+This is especially useful if for example you've seed data you need to pass as soon as the Unity view is available.
+
+Lastly, since it would be jarring to launch a UWP application full screen I like to tweak `UnityGenerated.cs` and changed the preferred launch window mode from full screen to auto:
+
+``` csharp
+// Change from FullScreen to Auto
+ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+```
+
+## Thread-Safety
+We've achieve basic interoperability between UWP and Unity. You can access static variables and methods defined in the `MonoBehaviour`s and leverage events.
+
+But if you attempt invoking methods that need to run on Unity's main thread, for example trying to instantiate a new game object, you'll soon encounter this exception:
+
+`
+Load can only be called from the main thread.
+Constructors and field initializers will be executed from the loading thread when loading a scene.
+Don't use this function in the constructor or field initializers, 
+instead move initialization code to the Awake or Start function.
+`
+
+This is because Unity is not thread-safe, and you're required to perform Unity API calls exclusively from the main thread.
+
+Knowing this limitation, you can easily get around it by creating a Unity singleton that polls for changes. Method invocations are queued, and processed in the singleton's update method to ensure they are called from Unity's main thread.
+
+I'm my demo I've used Pim DeWitte's UnityMainThreadDispatcher available on [github](https://github.com/PimDeWitte/UnityMainThreadDispatcher).
+
+
+## Conclusion
+Here's the finished result running on mobile and on desktop.
+
+
+
+You can also check out the project on [github](https://github.com/meanme/low-poly-city).
+
+It was a fun experiment. I do admit, if the end goal was simply displaying a list of prefabs, Unity's native UI could have been a simpler option. But interoperability with UWP opens a vast realm of interesting possibilities.
+
+Imagine for example leveraging Cortana, InkCanvas or even Eye Control to control you Unity view. Could also be a novel way to approach data visualization, animating 3D models in Unity instead of displaying charts.
+
+I hope you found this article interesting and enjoyed it. Let me know if it sparks the creativity for something new.
