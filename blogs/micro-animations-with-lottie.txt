@@ -1,0 +1,289 @@
+1:HL["/_next/static/media/3534416bbfdcc9be-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:HL["/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+3:HL["/_next/static/css/46d4b42639f639f4.css","style",{"crossOrigin":""}]
+0:["RRCwB9NoUwg5xrZ925cLl",[[["",{"children":["blogs",{"children":[["slug","micro-animations-with-lottie","d"],{"children":["__PAGE__?{\"slug\":\"micro-animations-with-lottie\"}",{}]}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/46d4b42639f639f4.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
+6:I{"id":4244,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+7:I{"id":9346,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+8:I{"id":1443,"chunks":["272:static/chunks/webpack-e84c3774b9afc0a4.js","971:static/chunks/fd9d1056-efd1263142ed9692.js","864:static/chunks/864-64b4d0c00c988add.js"],"name":"","async":false}
+9:I{"id":8639,"chunks":["272:static/chunks/webpack-e84c3774b9afc0a4.js","971:static/chunks/fd9d1056-efd1263142ed9692.js","864:static/chunks/864-64b4d0c00c988add.js"],"name":"","async":false}
+a:I{"id":4724,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"","async":false}
+c:I{"id":6964,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"Image","async":false}
+e:I{"id":7021,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"","async":false}
+12:I{"id":7244,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+d:T4ae,data:image/gif;base64,R0lGODlhCAAIAIcAAExpcVdv0gARM0lVaTNuP/PzhrPOst9sVgll27Xz+HNoLnGuteTM4Irz1fOWjZVqlLGUbneZ5G1xbUWvkf//7PLPbfOXGy9rkdqp1I9xTEkQKLXM03BGDu5VCjwiXo6uStfw18zMzLCTrUdNh/KUTGu56bu7uz2N6/S3j/etK252i0kzJXEQL+j///ju15BNDFVVVbNrDblFdSIiMzQzRNOUjbKrkEhSsbVxbm+Trkl1sIy48XpEky1Ka9O3kPXQkS7L9QAiHzcUdpKNcbbRb7La7ot2bKMvWKqqqgpJk7a7zVCw1rBxK72XzgZKt05wMrbx1aqqvfWyTbNMB7WrSzJEMt3d3UoNBnPNvdXd7yOJvO6ZtZNqLRV2dNWQKyUQSVhEREREVx4yaUS18tiyME6Os9G7r00mDPDd8fXWs+9zNO+KAnStkBcAAGlVbdSwcClvuNJPLjMzICIiIpDX9CURJZCXrrOOTmgqWEotkt3dxNCVa//u/yIzRGjV8Q9IcPLRNUiU0KS7uy9odHJ0sffutt2tFGpVSW5NKryqv01ELhQAEY30+NdsCg9ITnFOutHniNTx9BERIkNVVdKUTMzM4Qslbo1SJ9bOkm0tCJgpBteuT+j/641SR7NMKpOqsPS5s9bxtIREda1PTdJOCNeNDZG20E+KkBEiIlFnbpSKT9JwLReY6JCUj1SutpaudDJETo6X0K91Sa6YjE9xiwgrlbarc8AvCJLS1ydSsO9yCNaVuPO2bxEiM/GTbsbd3XQPA5WrlHKLkrSLLHBpT6W7pREiRgkyxCdSicjdxjUzVvXc09XNs3SJbxBskru7ou7u/+7u7iIiRFNmU28wJ6q73yIiWHGw0wAAIg1stywiD2uVz1VVQhEREXVrD72qqiIzM+HMzAAAEVFFEJVpEFpEWTUiMwkQbvqrEP/u7jMzMx4zVQARETciIjciRBQAI0RERCkQDBERMwsRR0NVQxEzQAAAABERAP///wAiOgARIgARACIzIQAAOBEiEQAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFhAAAACwAAAAACAAIAAAIOwDxhUCCpFWrEPjwmZAAr5ekVglNEDvUEElCJG6ITQJnEZ8ESTPmiBOWMEoqCShNJFzJMmE0aNCiJQwIADs=f:T4ae,data:image/gif;base64,R0lGODlhCAAIAIcAAExpcVdv0gARM0lVaTNuP/PzhrPOst9sVgll27Xz+HNoLnGuteTM4Irz1fOWjZVqlLGUbneZ5G1xbUWvkf//7PLPbfOXGy9rkdqp1I9xTEkQKLXM03BGDu5VCjwiXo6uStfw18zMzLCTrUdNh/KUTGu56bu7uz2N6/S3j/etK252i0kzJXEQL+j///ju15BNDFVVVbNrDblFdSIiMzQzRNOUjbKrkEhSsbVxbm+Trkl1sIy48XpEky1Ka9O3kPXQkS7L9QAiHzcUdpKNcbbRb7La7ot2bKMvWKqqqgpJk7a7zVCw1rBxK72XzgZKt05wMrbx1aqqvfWyTbNMB7WrSzJEMt3d3UoNBnPNvdXd7yOJvO6ZtZNqLRV2dNWQKyUQSVhEREREVx4yaUS18tiyME6Os9G7r00mDPDd8fXWs+9zNO+KAnStkBcAAGlVbdSwcClvuNJPLjMzICIiIpDX9CURJZCXrrOOTmgqWEotkt3dxNCVa//u/yIzRGjV8Q9IcPLRNUiU0KS7uy9odHJ0sffutt2tFGpVSW5NKryqv01ELhQAEY30+NdsCg9ITnFOutHniNTx9BERIkNVVdKUTMzM4Qslbo1SJ9bOkm0tCJgpBteuT+j/641SR7NMKpOqsPS5s9bxtIREda1PTdJOCNeNDZG20E+KkBEiIlFnbpSKT9JwLReY6JCUj1SutpaudDJETo6X0K91Sa6YjE9xiwgrlbarc8AvCJLS1ydSsO9yCNaVuPO2bxEiM/GTbsbd3XQPA5WrlHKLkrSLLHBpT6W7pREiRgkyxCdSicjdxjUzVvXc09XNs3SJbxBskru7ou7u/+7u7iIiRFNmU28wJ6q73yIiWHGw0wAAIg1stywiD2uVz1VVQhEREXVrD72qqiIzM+HMzAAAEVFFEJVpEFpEWTUiMwkQbvqrEP/u7jMzMx4zVQARETciIjciRBQAI0RERCkQDBERMwsRR0NVQxEzQAAAABERAP///wAiOgARIgARACIzIQAAOBEiEQAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFhAAAACwAAAAACAAIAAAIOwDxhUCCpFWrEPjwmZAAr5ekVglNEDvUEElCJG6ITQJnEZ8ESTPmiBOWMEoqCShNJFzJMmE0aNCiJQwIADs=10:T1da5,
+<Image
+  src="/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif"
+  width="500"
+  height="514"
+  alt="Micro-Animations in action"
+  sizes="100vw"
+/>
+
+### Intro
+Like when engaging in conversation, if our interlocutor speaks with a monotone and flat voice it becomes harder to pay attention to what they've to say and enjoy the exchange. Similarly, a static interface, without any dynamism, is bound to lose some of its users, or at the very list fell dull and unattractive.
+
+Micro-Animations, or Micro-Interactions, can be the inflection in the voice, the hand gesture, facial expressions, that help the good orator to tell a story.
+Through micro-animations the interface can feel more "human", convey some of those emotions, as well as feel more cohesive.
+
+Micros-Animations are often used to express:
+* **Feedback** - Use animations to convey the state of the application.
+![Pull Down To Refresh by Ramotion](https://cdn.dribbble.com/users/25514/screenshots/1797373/pull-down-refresh-iphone-app-interface-ux-design-ramotion.gif) Pull Down to Refresh by [Ramotion](https://dribbble.com/shots/1797373-Pull-Down-To-Refresh)
+
+* **Action** - Help the user understand the results of their actions
+![Submit Button by Colin Garven](https://cdn.dribbble.com/users/50261/screenshots/1426764/submit_button.gif) Submit Button by [Colin Garven](https://dribbble.com/shots/1426764-Submit-Button)
+
+* **Manipulation** - Emphasize the user's control over parts of the application
+![Dialin' by UI8](https://cdn.dribbble.com/users/107759/screenshots/1030768/dial-demo.gif) Dialin' by [UI8](https://dribbble.com/shots/1030768-Dialin)
+
+### Design to Development
+Having tried to define what micro-animations are, [dribbble](https://dribbble.com/) is a wonderful site to explore searching for inspiration.
+
+Chances are most of the animations are created with designer tools like
+Adobe After Effects, Principle, Flinto, or Framer - to name a few. How to bring them to life in a completed product then?
+AirBnB implemented Lottie: a rendering solution for After Effect files that has been widely adopted, and makes it really easy to use animations in your applications. Lottie has been ported to web, iOS, Android, and UWP - which is what I'll use in this demo.
+
+To avoid creating your animation in Adobe After Effect from scratch, I used pre-made assets available at [lottie files](https://www.lottiefiles.com/)
+
+### LottieUWP
+Now that we've defined an animation framework we can putting things together in a new UWP project.
+
+**⚠ Creating a new project make sure you're using a compatible SDK: Windows Build 10586+**
+
+Fire up Visual Studio, start with a new Blank App (Universal Windows), and bring the LottieUWP NuGet package in your project running:
+
+``` powershell
+Install-Package LottieUWP
+```
+
+Add the Lottie namespace in your `MainPage.xaml`:
+
+``` xml
+<Page 
+    ...
+    xmlns:lottieUwp="using:LottieUWP" />
+    ...
+</Page>
+```
+Lottie animations are defined using a json file exported using the the [Bodymovin](https://aescripts.com/bodymovin/) Adobe After Effects plugin. For this demo I'll use a star animation available at [LottieFiles created by Michael Harvey](https://www.lottiefiles.com/72-favourite-app-icon)
+
+Once the json animation is downloaded, you can render it by either using the `LottieAnimationView` XAML control, or by defining it in code. A programmatic approach is preferable if you're going to instantiate components at runtime (i.e. items in a list). I've opted for the XAML control in this demo.
+
+Bodymovin and Lottie allow using raster images in your animations. If you're using your own files, and image assets are required, make sure you specify the `ImageAssetsFolder` attribute in your `LottieAnimationView`.
+
+**⚠ The json animations should be bundled in your application by setting the *Build Step* as *Content***
+**Otherwise you'll receive the Error Message: "Unable to find file Assets/favourite_app_icon.json"**
+
+
+<Image
+  src="/blogs/micro-animations-with-lottie/lottie-json-config-properties.png"
+  width="788"
+  height="517"
+  alt="Properties Configuration"
+  sizes="100vw"
+/>
+
+
+Add the `LottieAnimationView` control to `MainPage.xaml`
+
+``` xml
+<lottieUwp:LottieAnimationView 
+    x:Name="LottieAnimationView" 
+    FileName="Assets/favourite_app_icon.json" 
+    AutoPlay="True" 
+    Loop="True"/>
+```
+
+<Image
+  src="/blogs/micro-animations-with-lottie/simple-lottie-animation-view.gif"
+  width="300"
+  height="300"
+  alt="Simple Lottie Animation"
+  sizes="100vw"
+/>
+
+## Controlling the animation via code
+To make the example a little more interesting, the animation shuold play in response to a user action.
+Remove the **AutoPlay** and **Loop** attributes from the Lottie Animation View. We'll control the animation implementing UIElement's **Tapped** event handler. Here's the final XAML code.
+
+``` xml
+<Page
+    x:Class="MicroAnimationsWithLottie.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MicroAnimationsWithLottie"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lottieUwp="using:LottieUWP"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <controls:DropShadowPanel
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            BlurRadius="10" ShadowOpacity="0.7">
+            <StackPanel Width="300" Height="398" Background="White">
+                <Image x:Name="BingBackground" 
+                       Margin="10" Width="280" 
+                       Source="http://c1.staticflickr.com/5/4438/36609628276_bee41dc564_n.jpg"
+                       Height="280" Stretch="UniformToFill" />
+                <StackPanel Background="White" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <lottieUwp:LottieAnimationView 
+                        x:Name="LottieAnimationView" 
+                        Padding="5"
+                        FileName="Assets/favourite_app_icon.json" Tapped="LottieAnimationView_Tapped" 
+                    />
+                </StackPanel>
+            </StackPanel>
+        </controls:DropShadowPanel>
+        
+    </Grid>
+</Page>
+```
+
+The code behind handler in **MainPage.xaml.cs** controls the playback of the animation. When the user clicks, we start by pausing any running animation. If the image is not favorited we'll play the animation, otherwise we'll revert to the first frame, with the hollow star, setting the progress to 0. You can find the complete example on [GitHub](https://github.com/meanme/micro-animations-with-lottie)
+
+``` csharp
+public bool IsFavorite { get; set; }
+private void LottieAnimationView_Tapped(object sender, TappedRoutedEventArgs e)
+{
+    if (LottieAnimationView.IsAnimating)
+    {
+        LottieAnimationView.PauseAnimation();
+    }
+
+    if (!IsFavorite)
+    {
+        LottieAnimationView.PlayAnimation();
+    }
+    else
+    {
+        LottieAnimationView.Progress = 0.0f;
+    }
+
+    IsFavorite = !IsFavorite;
+}
+```
+<Image
+  src="/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif"
+  width="500"
+  height="514"
+  alt="Control the animation in code"
+  sizes="100vw"
+/>
+Photo Credits: [CHRISCARMA](https://flic.kr/p/XM4V2w)
+
+### Conclusion
+This quick demo was to share the workflow, from Adobe After Effects to UWP app, and some useful links along the way. Hope you enjoyed it!11:T7638,var Component=(()=>{var h=Object.create;var t=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var E=Object.getOwnPropertyNames;var y=Object.getPrototypeOf,m=Object.prototype.hasOwnProperty;var u=(l,e)=>()=>(e||l((e={exports:{}}).exports,e),e.exports),g=(l,e)=>{for(var o in e)t(l,o,{get:e[o],enumerable:!0})},a=(l,e,o,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of E(e))!m.call(l,i)&&i!==o&&t(l,i,{get:()=>e[i],enumerable:!(r=p(e,i))||r.enumerable});return l};var F=(l,e,o)=>(o=l!=null?h(y(l)):{},a(e||!l||!l.__esModule?t(o,"default",{value:l,enumerable:!0}):o,l)),f=l=>a(t({},"__esModule",{value:!0}),l);var c=u((x,s)=>{s.exports=_jsx_runtime});var A={};g(A,{default:()=>B,frontmatter:()=>b});var n=F(c()),b={title:"Micro-Animations with Lottie",description:"Enhance UX with Lottie Animations",image:"../../public/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif",publishedAt:"2017-12-01",updatedAt:"2017-12-01",author:"meanme",isPublished:!0,tags:["UWP","Animation","Lottie"]};function d(l){let e=Object.assign({h3:"h3",a:"a",span:"span",p:"p",ul:"ul",li:"li",strong:"strong",img:"img",div:"div",pre:"pre",code:"code",em:"em",h2:"h2"},l.components),{Image:o}=e;return o||v("Image",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(o,{src:"/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif",width:"500",height:"514",alt:"Micro-Animations in action",sizes:"100vw"}),`
+`,(0,n.jsxs)(e.h3,{id:"intro",children:["Intro",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#intro",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Like when engaging in conversation, if our interlocutor speaks with a monotone and flat voice it becomes harder to pay attention to what they've to say and enjoy the exchange. Similarly, a static interface, without any dynamism, is bound to lose some of its users, or at the very list fell dull and unattractive."}),`
+`,(0,n.jsx)(e.p,{children:`Micro-Animations, or Micro-Interactions, can be the inflection in the voice, the hand gesture, facial expressions, that help the good orator to tell a story.
+Through micro-animations the interface can feel more "human", convey some of those emotions, as well as feel more cohesive.`}),`
+`,(0,n.jsx)(e.p,{children:"Micros-Animations are often used to express:"}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Feedback"}),` - Use animations to convey the state of the application.
+`,(0,n.jsx)(e.img,{src:"https://cdn.dribbble.com/users/25514/screenshots/1797373/pull-down-refresh-iphone-app-interface-ux-design-ramotion.gif",alt:"Pull Down To Refresh by Ramotion"})," Pull Down to Refresh by ",(0,n.jsx)(e.a,{href:"https://dribbble.com/shots/1797373-Pull-Down-To-Refresh",children:"Ramotion"})]}),`
+`]}),`
+`,(0,n.jsxs)(e.li,{children:[`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Action"}),` - Help the user understand the results of their actions
+`,(0,n.jsx)(e.img,{src:"https://cdn.dribbble.com/users/50261/screenshots/1426764/submit_button.gif",alt:"Submit Button by Colin Garven"})," Submit Button by ",(0,n.jsx)(e.a,{href:"https://dribbble.com/shots/1426764-Submit-Button",children:"Colin Garven"})]}),`
+`]}),`
+`,(0,n.jsxs)(e.li,{children:[`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:"Manipulation"}),` - Emphasize the user's control over parts of the application
+`,(0,n.jsx)(e.img,{src:"https://cdn.dribbble.com/users/107759/screenshots/1030768/dial-demo.gif",alt:"Dialin' by UI8"})," Dialin' by ",(0,n.jsx)(e.a,{href:"https://dribbble.com/shots/1030768-Dialin",children:"UI8"})]}),`
+`]}),`
+`]}),`
+`,(0,n.jsxs)(e.h3,{id:"design-to-development",children:["Design to Development",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#design-to-development",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsxs)(e.p,{children:["Having tried to define what micro-animations are, ",(0,n.jsx)(e.a,{href:"https://dribbble.com/",children:"dribbble"})," is a wonderful site to explore searching for inspiration."]}),`
+`,(0,n.jsx)(e.p,{children:`Chances are most of the animations are created with designer tools like
+Adobe After Effects, Principle, Flinto, or Framer - to name a few. How to bring them to life in a completed product then?
+AirBnB implemented Lottie: a rendering solution for After Effect files that has been widely adopted, and makes it really easy to use animations in your applications. Lottie has been ported to web, iOS, Android, and UWP - which is what I'll use in this demo.`}),`
+`,(0,n.jsxs)(e.p,{children:["To avoid creating your animation in Adobe After Effect from scratch, I used pre-made assets available at ",(0,n.jsx)(e.a,{href:"https://www.lottiefiles.com/",children:"lottie files"})]}),`
+`,(0,n.jsxs)(e.h3,{id:"lottieuwp",children:["LottieUWP",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#lottieuwp",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Now that we've defined an animation framework we can putting things together in a new UWP project."}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"\u26A0 Creating a new project make sure you're using a compatible SDK: Windows Build 10586+"})}),`
+`,(0,n.jsx)(e.p,{children:"Fire up Visual Studio, start with a new Blank App (Universal Windows), and bring the LottieUWP NuGet package in your project running:"}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"powershell","data-theme":"default",children:(0,n.jsx)(e.code,{"data-language":"powershell","data-theme":"default",children:(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#79B8FF"},children:"Install-Package"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" LottieUWP"})]})})})}),`
+`,(0,n.jsxs)(e.p,{children:["Add the Lottie namespace in your ",(0,n.jsx)(e.code,{children:"MainPage.xaml"}),":"]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"xml","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"xml","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"<"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Page"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    ..."})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:lottieUwp"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"using:LottieUWP"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" />"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    ..."})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"</"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Page"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]})]})})}),`
+`,(0,n.jsxs)(e.p,{children:["Lottie animations are defined using a json file exported using the the ",(0,n.jsx)(e.a,{href:"https://aescripts.com/bodymovin/",children:"Bodymovin"})," Adobe After Effects plugin. For this demo I'll use a star animation available at ",(0,n.jsx)(e.a,{href:"https://www.lottiefiles.com/72-favourite-app-icon",children:"LottieFiles created by Michael Harvey"})]}),`
+`,(0,n.jsxs)(e.p,{children:["Once the json animation is downloaded, you can render it by either using the ",(0,n.jsx)(e.code,{children:"LottieAnimationView"})," XAML control, or by defining it in code. A programmatic approach is preferable if you're going to instantiate components at runtime (i.e. items in a list). I've opted for the XAML control in this demo."]}),`
+`,(0,n.jsxs)(e.p,{children:["Bodymovin and Lottie allow using raster images in your animations. If you're using your own files, and image assets are required, make sure you specify the ",(0,n.jsx)(e.code,{children:"ImageAssetsFolder"})," attribute in your ",(0,n.jsx)(e.code,{children:"LottieAnimationView"}),"."]}),`
+`,(0,n.jsxs)(e.p,{children:[(0,n.jsxs)(e.strong,{children:["\u26A0 The json animations should be bundled in your application by setting the ",(0,n.jsx)(e.em,{children:"Build Step"})," as ",(0,n.jsx)(e.em,{children:"Content"})]}),`
+`,(0,n.jsx)(e.strong,{children:`Otherwise you'll receive the Error Message: "Unable to find file Assets/favourite_app_icon.json"`})]}),`
+`,(0,n.jsx)(o,{src:"/blogs/micro-animations-with-lottie/lottie-json-config-properties.png",width:"788",height:"517",alt:"Properties Configuration",sizes:"100vw"}),`
+`,(0,n.jsxs)(e.p,{children:["Add the ",(0,n.jsx)(e.code,{children:"LottieAnimationView"})," control to ",(0,n.jsx)(e.code,{children:"MainPage.xaml"})]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"xml","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"xml","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"<"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"lottieUwp:LottieAnimationView"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"LottieAnimationView"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"FileName"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Assets/favourite_app_icon.json"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"AutoPlay"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"True"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Loop"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"True"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"/>"})]})]})})}),`
+`,(0,n.jsx)(o,{src:"/blogs/micro-animations-with-lottie/simple-lottie-animation-view.gif",width:"300",height:"300",alt:"Simple Lottie Animation",sizes:"100vw"}),`
+`,(0,n.jsxs)(e.h2,{id:"controlling-the-animation-via-code",children:["Controlling the animation via code",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#controlling-the-animation-via-code",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsxs)(e.p,{children:[`To make the example a little more interesting, the animation shuold play in response to a user action.
+Remove the `,(0,n.jsx)(e.strong,{children:"AutoPlay"})," and ",(0,n.jsx)(e.strong,{children:"Loop"})," attributes from the Lottie Animation View. We'll control the animation implementing UIElement's ",(0,n.jsx)(e.strong,{children:"Tapped"})," event handler. Here's the final XAML code."]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"xml","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"xml","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"<"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Page"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Class"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"MicroAnimationsWithLottie.MainPage"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"http://schemas.microsoft.com/winfx/2006/xaml/presentation"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:x"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"http://schemas.microsoft.com/winfx/2006/xaml"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:local"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"using:MicroAnimationsWithLottie"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:d"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"http://schemas.microsoft.com/expression/blend/2008"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:mc"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"http://schemas.openxmlformats.org/markup-compatibility/2006"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:lottieUwp"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"using:LottieUWP"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"xmlns:controls"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"using:Microsoft.Toolkit.Uwp.UI.Controls"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"mc:Ignorable"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"d"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Grid"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Background"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"{ThemeResource ApplicationPageBackgroundThemeBrush}"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"controls:DropShadowPanel"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"HorizontalAlignment"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Center"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"VerticalAlignment"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Center"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"BlurRadius"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"10"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"ShadowOpacity"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"0.7"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"StackPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Width"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"300"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Height"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"398"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Background"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"White"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Image"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"BingBackground"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                       "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Margin"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"10"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Width"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"280"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                       "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Source"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"http://c1.staticflickr.com/5/4438/36609628276_bee41dc564_n.jpg"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                       "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Height"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"280"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Stretch"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"UniformToFill"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" />"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"StackPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Background"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"White"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Orientation"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Horizontal"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"HorizontalAlignment"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Right"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                    <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"lottieUwp:LottieAnimationView"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                        "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"LottieAnimationView"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                        "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Padding"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"5"'})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                        "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"FileName"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Assets/favourite_app_icon.json"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Tapped"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"LottieAnimationView_Tapped"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                    />"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"                </"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"StackPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            </"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"StackPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        </"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"controls:DropShadowPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        "})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    </"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Grid"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"</"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Page"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]})]})})}),`
+`,(0,n.jsxs)(e.p,{children:["The code behind handler in ",(0,n.jsx)(e.strong,{children:"MainPage.xaml.cs"})," controls the playback of the animation. When the user clicks, we start by pausing any running animation. If the image is not favorited we'll play the animation, otherwise we'll revert to the first frame, with the hollow star, setting the progress to 0. You can find the complete example on ",(0,n.jsx)(e.a,{href:"https://github.com/meanme/micro-animations-with-lottie",children:"GitHub"})]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"csharp","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"csharp","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"public"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" bool IsFavorite { get; set; }"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"private"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"void"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"LottieAnimationView_Tapped"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"("}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"object"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"sender"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:", "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"TappedRoutedEventArgs"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"e"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:")"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"{"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"if"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" (LottieAnimationView.IsAnimating)"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    {"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        LottieAnimationView."}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"PauseAnimation"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"();"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    }"})}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"if"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" ("}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"!"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"IsFavorite)"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    {"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        LottieAnimationView."}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"PlayAnimation"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"();"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    }"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"else"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    {"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        LottieAnimationView.Progress "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#79B8FF"},children:"0.0f"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:";"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    }"})}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    IsFavorite "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"!"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"IsFavorite;"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"}"})})]})})}),`
+`,(0,n.jsx)(o,{src:"/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif",width:"500",height:"514",alt:"Control the animation in code",sizes:"100vw"}),`
+`,(0,n.jsxs)(e.p,{children:["Photo Credits: ",(0,n.jsx)(e.a,{href:"https://flic.kr/p/XM4V2w",children:"CHRISCARMA"})]}),`
+`,(0,n.jsxs)(e.h3,{id:"conclusion",children:["Conclusion",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#conclusion",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"This quick demo was to share the workflow, from Adobe After Effects to UWP app, and some useful links along the way. Hope you enjoyed it!"})]})}function w(l={}){let{wrapper:e}=l.components||{};return e?(0,n.jsx)(e,Object.assign({},l,{children:(0,n.jsx)(d,l)})):d(l)}var B=w;function v(l,e){throw new Error("Expected "+(e?"component":"object")+" `"+l+"` to be defined: you likely forgot to import, pass, or provide it.")}return f(A);})();
+;return Component;4:[null,["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_aaf875 __variable_da1155 font-mr bg-light dark:bg-dark","children":[["$","$L6",null,{"id":"theme-switcher","strategy":"beforeInteractive","children":"if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n    document.documentElement.classList.add('dark')\n  } else {\n    document.documentElement.classList.remove('dark')\n  }"}],["$","$L7",null,{}],["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":["$","main",null,{"className":"my-32 w-full dark:bg-dark flex justify-center font-mr","children":["$","div",null,{"className":"relative flex flex-col items-center justify-center","children":[["$","h1",null,{"className":"inline-block text-dark dark:text-light\n      text-6xl font-bold w-full capitalize xl:text-8xl text-center","children":"404"}],["$","h2",null,{"className":"inline-block text-dark dark:text-light\n      text-5xl font-bold w-full capitalize xl:text-6xl text-center mt-4 tracking-wide leading-snug","children":"Page Not Found!"}],["$","$La",null,{"href":"/","className":"self-center mt-8 inline-block rounded-lg border-2 border-solid bg-dark px-4 py-2 font-semibold text-light hover:border-dark hover:bg-light hover:text-dark  dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light ","children":"Go To Home"}]]}]}],"notFoundStyles":[],"childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","blogs","children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","blogs","children",["slug","micro-animations-with-lottie","d"],"children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$Lb",[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Micro-Animations with Lottie\",\"description\":\"Enhance UX with Lottie Animations\",\"image\":[\"https://meanme.com/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif\"],\"datePublished\":\"2017-12-01T00:00:00.000Z\",\"dateModified\":\"2017-12-01T00:00:00.000Z\",\"author\":[{\"@type\":\"Person\",\"name\":[\"meanme\"],\"url\":\"https://twitter.com/meanme_com\"}]}"}}],["$","article",null,{"children":[["$","div",null,{"className":"mb-8 text-center relative w-full h-[70vh] bg-dark","children":[["$","div",null,{"className":"w-full z-10 flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2","children":[["$","$La",null,{"href":"/categories/uwp","className":"inline-block py-2 sm:py-3 px-6 sm:px-10  bg-dark text-light rounded-full capitalize font-semibold border-2 border-solid border-light hover:scale-105 transition-all ease duration-200 text-sm sm:text-base px-6 text-sm py-2","children":"UWP"}],["$","h1",null,{"className":"inline-block mt-6 font-semibold capitalize text-light text-2xl md:text-3xl lg:text-5xl !leading-normal relative w-5/6","children":"Micro-Animations with Lottie"}]]}],["$","div",null,{"className":"absolute top-0 left-0 right-0 bottom-0 h-full bg-dark/60 dark:bg-dark/40"}],["$","$Lc",null,{"src":"/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif","placeholder":"blur","blurDataURL":"$d","alt":"Micro-Animations with Lottie","width":500,"height":514,"className":"aspect-square w-full h-full object-cover object-center","priority":true,"sizes":"100vw"}]]}],["$","div",null,{"className":"px-2  md:px-10 bg-accent dark:bg-accentDark text-light dark:text-dark py-2 flex items-center justify-around flex-wrap text-lg sm:text-xl font-medium mx-5  md:mx-10 rounded-lg","children":[["$","time",null,{"className":"m-3","children":"December 1, 2017"}],["$","div",null,{"className":"m-3","children":"4 min read"}],["$","$La",null,{"href":"/categories/uwp","className":"m-3","children":["#","UWP"]}]]}],["$","div",null,{"className":"grid grid-cols-12  gap-y-8 lg:gap-8 sxl:gap-16 mt-8 px-5 md:px-10","children":[["$","div",null,{"className":"col-span-12  lg:col-span-4","children":["$","details",null,{"className":"border-[1px] border-solid border-dark dark:border-light text-dark dark:text-light rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto","open":true,"children":[["$","summary",null,{"className":"text-lg font-semibold capitalize cursor-pointer","children":"Table Of Content"}],["$","ul",null,{"className":"mt-4 font-in text-base","children":[["$","li","#intro",{"className":"py-1","children":["$","a",null,{"href":"#intro","data-level":"three","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[["$","span",null,{"className":"flex w-1 h-1 rounded-full bg-dark mr-2","children":" "}],["$","span",null,{"className":"hover:underline","children":"Intro"}]]}]}],["$","li","#design-to-development",{"className":"py-1","children":["$","a",null,{"href":"#design-to-development","data-level":"three","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[["$","span",null,{"className":"flex w-1 h-1 rounded-full bg-dark mr-2","children":" "}],["$","span",null,{"className":"hover:underline","children":"Design to Development"}]]}]}],["$","li","#lottieuwp",{"className":"py-1","children":["$","a",null,{"href":"#lottieuwp","data-level":"three","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[["$","span",null,{"className":"flex w-1 h-1 rounded-full bg-dark mr-2","children":" "}],["$","span",null,{"className":"hover:underline","children":"LottieUWP"}]]}]}],["$","li","#controlling-the-animation-via-code",{"className":"py-1","children":["$","a",null,{"href":"#controlling-the-animation-via-code","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Controlling the animation via code"}]]}]}],["$","li","#conclusion",{"className":"py-1","children":["$","a",null,{"href":"#conclusion","data-level":"three","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[["$","span",null,{"className":"flex w-1 h-1 rounded-full bg-dark mr-2","children":" "}],["$","span",null,{"className":"hover:underline","children":"Conclusion"}]]}]}]]}]]}]}],["$","$Le",null,{"blog":{"title":"Micro-Animations with Lottie","publishedAt":"2017-12-01T00:00:00.000Z","updatedAt":"2017-12-01T00:00:00.000Z","description":"Enhance UX with Lottie Animations","image":{"filePath":"../public/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif","relativeFilePath":"../../public/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif","format":"gif","height":514,"width":500,"aspectRatio":0.9727626459143969,"blurhashDataUrl":"$f"},"isPublished":true,"author":"meanme","tags":["UWP","Animation","Lottie"],"body":{"raw":"$10","code":"$11"},"_id":"micro-animations-with-lottie/index.mdx","_raw":{"sourceFilePath":"micro-animations-with-lottie/index.mdx","sourceFileName":"index.mdx","sourceFileDir":"micro-animations-with-lottie","contentType":"mdx","flattenedPath":"micro-animations-with-lottie"},"type":"Blog","url":"/blogs/micro-animations-with-lottie","readingTime":{"text":"4 min read","minutes":3.9,"time":234000,"words":780},"toc":[{"level":"three","text":"Intro","slug":"intro"},{"level":"three","text":"Design to Development","slug":"design-to-development"},{"level":"three","text":"LottieUWP","slug":"lottieuwp"},{"level":"two","text":"Controlling the animation via code","slug":"controlling-the-animation-via-code"},{"level":"three","text":"Conclusion","slug":"conclusion"}]}}]]}]]}]],null],"segment":"__PAGE__?{\"slug\":\"micro-animations-with-lottie\"}"},"styles":[]}],"segment":["slug","micro-animations-with-lottie","d"]},"styles":[]}],"segment":"blogs"},"styles":[]}],["$","$L12",null,{}]]}]}],null]
+5:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Micro-Animations with Lottie | Matteo's blog"}],["$","meta","2",{"name":"description","content":"Enhance UX with Lottie Animations"}],["$","link","3",{"rel":"manifest","href":"/manifest.webmanifest"}],["$","meta","4",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","5",{"name":"robots","content":"index, follow"}],["$","meta","6",{"name":"googlebot","content":"index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","7",{"property":"og:title","content":"Micro-Animations with Lottie"}],["$","meta","8",{"property":"og:description","content":"Enhance UX with Lottie Animations"}],["$","meta","9",{"property":"og:url","content":"https://meanme.com/blogs/micro-animations-with-lottie"}],["$","meta","10",{"property":"og:site_name","content":"Matteo's blog"}],["$","meta","11",{"property":"og:locale","content":"en_US"}],["$","meta","12",{"property":"og:image","content":"https://meanme.com/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif"}],["$","meta","13",{"property":"og:type","content":"article"}],["$","meta","14",{"property":"article:published_time","content":"2017-12-01T00:00:00.000Z"}],["$","meta","15",{"property":"article:modified_time","content":"2017-12-01T00:00:00.000Z"}],["$","meta","16",{"property":"article:author","content":"meanme"}],["$","meta","17",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","18",{"name":"twitter:title","content":"Micro-Animations with Lottie"}],["$","meta","19",{"name":"twitter:description","content":"Enhance UX with Lottie Animations"}],["$","meta","20",{"name":"twitter:image","content":"https://meanme.com/blogs/micro-animations-with-lottie/code-behind-lottie-animation-view.gif"}],["$","link","21",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","link","22",{"rel":"apple-touch-icon","href":"/apple-icon.png?1f3d3abd51ecae45","type":"image/png","sizes":"180x180"}],["$","meta","23",{"name":"next-size-adjust"}]]
+b:null

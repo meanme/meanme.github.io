@@ -1,0 +1,222 @@
+1:HL["/_next/static/media/3534416bbfdcc9be-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:HL["/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+3:HL["/_next/static/css/46d4b42639f639f4.css","style",{"crossOrigin":""}]
+0:["RRCwB9NoUwg5xrZ925cLl",[[["",{"children":["blogs",{"children":[["slug","unity-interoperability","d"],{"children":["__PAGE__?{\"slug\":\"unity-interoperability\"}",{}]}]}]},"$undefined","$undefined",true],"$L4",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/46d4b42639f639f4.css","precedence":"next","crossOrigin":""}]],"$L5"]]]]
+6:I{"id":4244,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+7:I{"id":9346,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+8:I{"id":1443,"chunks":["272:static/chunks/webpack-e84c3774b9afc0a4.js","971:static/chunks/fd9d1056-efd1263142ed9692.js","864:static/chunks/864-64b4d0c00c988add.js"],"name":"","async":false}
+9:I{"id":8639,"chunks":["272:static/chunks/webpack-e84c3774b9afc0a4.js","971:static/chunks/fd9d1056-efd1263142ed9692.js","864:static/chunks/864-64b4d0c00c988add.js"],"name":"","async":false}
+a:I{"id":4724,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"","async":false}
+c:I{"id":6964,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"Image","async":false}
+d:I{"id":7021,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","173:static/chunks/173-fb385f020b4ec683.js","688:static/chunks/app/blogs/[slug]/page-1a3c0f8d64803b67.js"],"name":"","async":false}
+10:I{"id":7244,"chunks":["724:static/chunks/724-b7c5d93effd9a4b8.js","964:static/chunks/964-5c947193e666e89e.js","689:static/chunks/689-cdfe23008e188e31.js","808:static/chunks/808-137f8c9564b80498.js","185:static/chunks/app/layout-2ea8e2e8d273b556.js"],"name":"","async":false}
+e:T1890,
+
+## Overview
+In this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to interact with the Unity view.
+
+After some research, I found the [Atmosphere weather app example](https://github.com/Microsoft/uwp-experiences/tree/master/apps/weather), demonstrating interoperability between UWP and Unity. Is a fantastic resource and I recommend checking it out. We'll go over step by step and create something similar, building a small low poly town.
+
+
+
+
+
+## Requirements
+Visual Studio 2015 RTM, (the minimum version is 14.0.23107.0). Please note that earlier versions, for example Visual Studio RC, are not supported in Unity 5.2.
+
+The Unity assets used for the project are Area730's [Stylized Simple Cartoon City](https://www.assetstore.unity3d.com/en/#!/content/50095) and Demigiant's [DOTween](https://www.assetstore.unity3d.com/en/#!/content/27676).
+
+## Build Settings
+In your Unity scripts you can declare `static` fields and access them from UWP. In the `MonoBehavior`'s update loop you can keep track of changes and update your Unity view accordingly.
+
+If you need to pass data from Unity to UWP you can declare a `static` `EventHandler` in Unity, and register callbacks in UWP.
+
+Once you've implemented your logic, head to the Build Settings and configure your project. Use the following settings:
+
+* Select **Windows Store** as your Platform
+* Set *UWP Build Type* to **XAML**
+* Enable **Unity C# Projects**
+
+<Image
+  src="/blogs/unity-interoperability/build-settings.png"
+  width="600"
+  height="581"
+  alt="Build Settings"
+  sizes="100vw"
+/>
+
+If you don't have the Windows Store platform installed, Unity will prompt you to install (the download is named Metro Support).
+
+Selecting XAML instead of D3D for your build type will render the Unity game using a [SwapChainPanel](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.SwapChainPanel) XAML control, used to render DirectX graphics within a XAML View.
+
+## Integrating Unity in UWP
+Open the newly generated solution in Visual Studio and take a look at the Solution explorer.
+
+
+
+In the *Assembly-CSharp* project you'll find all the Unity runtime Scripts. Meanwhile the last project is the entry point for the UWP application. In `MainPage.xaml` you'll see the generated SwapChainPanel used to render the Unity view:
+
+``` xml
+<SwapChainPanel x:Name="DXSwapChainPanel">
+    <Grid x:Name="ExtendedSplashGrid" Background="#FFFFFF">
+        <Image x:Name="ExtendedSplashImage" 
+            Source="Assets/SplashScreen.png" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"/>
+    </Grid>
+</SwapChainPanel>
+```
+
+For this demo I have added a `ListView` in `MainPage.xaml`. Clicking on the items in the list will dynamically add a game object in the Unity view.
+From the ItemClick handler in `MainView.xaml.cs` I call the static method  defined in my Unity script to instantiate a new prefab.
+
+## Assets Loaded
+Unity views will take a little longer to load. If you try to interact with the Unity view before it's loaded you'll encounter unexpected results. One solution is to register an event handler in your Unity scripts and check when the assets are loaded in your UWP code before interacting with the Unity view.
+
+For example, in your Unity Controller add a new event
+
+``` csharp
+public static event EventHandler AssetsLoaded;
+
+void Start()
+{ 
+    if(AssetsLoaded != null)
+    {
+        AssetsLoaded(null, null);
+    }
+}
+```
+
+And in your UWP code behind register the corresponding event handler:
+
+``` csharp
+
+protected override async void OnNavigatedTo(NavigationEventArgs e)
+{
+    base.OnNavigatedTo(e);
+    MyUnitytController.AssetsLoaded += MyUnitytController_AssetsLoaded;
+}
+
+private void MyUnitytController_AssetsLoaded(object sender, EventArgs e)
+{
+    // The Unity view is loaded! 😁🎉
+    // You can start calling the methods defined in unity scripts
+}
+```
+
+This is especially useful if for example you've seed data you need to pass as soon as the Unity view is available.
+
+Lastly, since it would be jarring to launch a UWP application full screen I like to tweak `UnityGenerated.cs` and changed the preferred launch window mode from full screen to auto:
+
+``` csharp
+// Change from FullScreen to Auto
+ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+```
+
+## Thread-Safety
+We've achieve basic interoperability between UWP and Unity. You can access static variables and methods defined in the `MonoBehaviour`s and leverage events.
+
+But if you attempt invoking methods that need to run on Unity's main thread, for example trying to instantiate a new game object, you'll soon encounter this exception:
+
+`
+Load can only be called from the main thread.
+Constructors and field initializers will be executed from the loading thread when loading a scene.
+Don't use this function in the constructor or field initializers, 
+instead move initialization code to the Awake or Start function.
+`
+
+This is because Unity is not thread-safe, and you're required to perform Unity API calls exclusively from the main thread.
+
+Knowing this limitation, you can easily get around it by creating a Unity singleton that polls for changes. Method invocations are queued, and processed in the singleton's update method to ensure they are called from Unity's main thread.
+
+I'm my demo I've used Pim DeWitte's UnityMainThreadDispatcher available on [github](https://github.com/PimDeWitte/UnityMainThreadDispatcher).
+
+
+## Conclusion
+Here's the finished result running on mobile and on desktop.
+
+
+
+You can also check out the project on [github](https://github.com/meanme/low-poly-city).
+
+It was a fun experiment. I do admit, if the end goal was simply displaying a list of prefabs, Unity's native UI could have been a simpler option. But interoperability with UWP opens a vast realm of interesting possibilities.
+
+Imagine for example leveraging Cortana, InkCanvas or even Eye Control to control you Unity view. Could also be a novel way to approach data visualization, animating 3D models in Unity instead of displaying charts.
+
+I hope you found this article interesting and enjoyed it. Let me know if it sparks the creativity for something new.
+f:T5013,var Component=(()=>{var h=Object.create;var a=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var y=Object.getOwnPropertyNames;var E=Object.getPrototypeOf,u=Object.prototype.hasOwnProperty;var m=(l,e)=>()=>(e||l((e={exports:{}}).exports,e),e.exports),g=(l,e)=>{for(var i in e)a(l,i,{get:e[i],enumerable:!0})},o=(l,e,i,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let t of y(e))!u.call(l,t)&&t!==i&&a(l,t,{get:()=>e[t],enumerable:!(r=p(e,t))||r.enumerable});return l};var f=(l,e,i)=>(i=l!=null?h(E(l)):{},o(e||!l||!l.__esModule?a(i,"default",{value:l,enumerable:!0}):i,l)),w=l=>o(a({},"__esModule",{value:!0}),l);var c=m((C,s)=>{s.exports=_jsx_runtime});var x={};g(x,{default:()=>F,frontmatter:()=>b});var n=f(c()),b={title:"Unity interoperability",description:"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone.",image:"../../public/blogs/unity-interoperability/live-00.png",publishedAt:"2017-08-10",updatedAt:"2017-08-10",author:"meanme",isPublished:!0,tags:["Unity","UWP"]};function d(l){let e=Object.assign({h2:"h2",a:"a",span:"span",p:"p",code:"code",ul:"ul",li:"li",strong:"strong",em:"em",div:"div",pre:"pre"},l.components),{Image:i}=e;return i||U("Image",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(e.h2,{id:"overview",children:["Overview",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#overview",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"In this post I want to explore the interoperability between UWP XAML apps and Unity. Specifically, I wanted to embed my Unity view inside a UWP app, and be able to call methods from UWP to interact with the Unity view."}),`
+`,(0,n.jsxs)(e.p,{children:["After some research, I found the ",(0,n.jsx)(e.a,{href:"https://github.com/Microsoft/uwp-experiences/tree/master/apps/weather",children:"Atmosphere weather app example"}),", demonstrating interoperability between UWP and Unity. Is a fantastic resource and I recommend checking it out. We'll go over step by step and create something similar, building a small low poly town."]}),`
+`,(0,n.jsxs)(e.h2,{id:"requirements",children:["Requirements",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#requirements",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Visual Studio 2015 RTM, (the minimum version is 14.0.23107.0). Please note that earlier versions, for example Visual Studio RC, are not supported in Unity 5.2."}),`
+`,(0,n.jsxs)(e.p,{children:["The Unity assets used for the project are Area730's ",(0,n.jsx)(e.a,{href:"https://www.assetstore.unity3d.com/en/#!/content/50095",children:"Stylized Simple Cartoon City"})," and Demigiant's ",(0,n.jsx)(e.a,{href:"https://www.assetstore.unity3d.com/en/#!/content/27676",children:"DOTween"}),"."]}),`
+`,(0,n.jsxs)(e.h2,{id:"build-settings",children:["Build Settings",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#build-settings",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsxs)(e.p,{children:["In your Unity scripts you can declare ",(0,n.jsx)(e.code,{children:"static"})," fields and access them from UWP. In the ",(0,n.jsx)(e.code,{children:"MonoBehavior"}),"'s update loop you can keep track of changes and update your Unity view accordingly."]}),`
+`,(0,n.jsxs)(e.p,{children:["If you need to pass data from Unity to UWP you can declare a ",(0,n.jsx)(e.code,{children:"static"})," ",(0,n.jsx)(e.code,{children:"EventHandler"})," in Unity, and register callbacks in UWP."]}),`
+`,(0,n.jsx)(e.p,{children:"Once you've implemented your logic, head to the Build Settings and configure your project. Use the following settings:"}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:["Select ",(0,n.jsx)(e.strong,{children:"Windows Store"})," as your Platform"]}),`
+`,(0,n.jsxs)(e.li,{children:["Set ",(0,n.jsx)(e.em,{children:"UWP Build Type"})," to ",(0,n.jsx)(e.strong,{children:"XAML"})]}),`
+`,(0,n.jsxs)(e.li,{children:["Enable ",(0,n.jsx)(e.strong,{children:"Unity C# Projects"})]}),`
+`]}),`
+`,(0,n.jsx)(i,{src:"/blogs/unity-interoperability/build-settings.png",width:"600",height:"581",alt:"Build Settings",sizes:"100vw"}),`
+`,(0,n.jsx)(e.p,{children:"If you don't have the Windows Store platform installed, Unity will prompt you to install (the download is named Metro Support)."}),`
+`,(0,n.jsxs)(e.p,{children:["Selecting XAML instead of D3D for your build type will render the Unity game using a ",(0,n.jsx)(e.a,{href:"https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.SwapChainPanel",children:"SwapChainPanel"})," XAML control, used to render DirectX graphics within a XAML View."]}),`
+`,(0,n.jsxs)(e.h2,{id:"integrating-unity-in-uwp",children:["Integrating Unity in UWP",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#integrating-unity-in-uwp",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Open the newly generated solution in Visual Studio and take a look at the Solution explorer."}),`
+`,(0,n.jsxs)(e.p,{children:["In the ",(0,n.jsx)(e.em,{children:"Assembly-CSharp"})," project you'll find all the Unity runtime Scripts. Meanwhile the last project is the entry point for the UWP application. In ",(0,n.jsx)(e.code,{children:"MainPage.xaml"})," you'll see the generated SwapChainPanel used to render the Unity view:"]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"xml","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"xml","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"<"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"SwapChainPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"DXSwapChainPanel"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Grid"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"ExtendedSplashGrid"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Background"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"#FFFFFF"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        <"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Image"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"x:Name"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"ExtendedSplashImage"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Source"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Assets/SplashScreen.png"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"VerticalAlignment"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Center"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"            "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"HorizontalAlignment"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#9ECBFF"},children:'"Center"'}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"/>"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    </"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"Grid"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"</"}),(0,n.jsx)(e.span,{style:{color:"#85E89D"},children:"SwapChainPanel"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:">"})]})]})})}),`
+`,(0,n.jsxs)(e.p,{children:["For this demo I have added a ",(0,n.jsx)(e.code,{children:"ListView"})," in ",(0,n.jsx)(e.code,{children:"MainPage.xaml"}),`. Clicking on the items in the list will dynamically add a game object in the Unity view.
+From the ItemClick handler in `,(0,n.jsx)(e.code,{children:"MainView.xaml.cs"})," I call the static method  defined in my Unity script to instantiate a new prefab."]}),`
+`,(0,n.jsxs)(e.h2,{id:"assets-loaded",children:["Assets Loaded",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#assets-loaded",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Unity views will take a little longer to load. If you try to interact with the Unity view before it's loaded you'll encounter unexpected results. One solution is to register an event handler in your Unity scripts and check when the assets are loaded in your UWP code before interacting with the Unity view."}),`
+`,(0,n.jsx)(e.p,{children:"For example, in your Unity Controller add a new event"}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"csharp","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"csharp","data-theme":"default",children:[(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"public"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"static"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" event "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"EventHandler"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"AssetsLoaded"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:";"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"void"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"Start"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"()"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"{ "})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"if"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"(AssetsLoaded "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"!="}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#79B8FF"},children:"null"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:")"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    {"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"        "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"AssetsLoaded"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"("}),(0,n.jsx)(e.span,{style:{color:"#79B8FF"},children:"null"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:", "}),(0,n.jsx)(e.span,{style:{color:"#79B8FF"},children:"null"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:");"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    }"})}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"}"})})]})})}),`
+`,(0,n.jsx)(e.p,{children:"And in your UWP code behind register the corresponding event handler:"}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"csharp","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"csharp","data-theme":"default",children:[(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"protected"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"override"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"async"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"void"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"OnNavigatedTo"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"("}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"NavigationEventArgs"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"e"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:")"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"{"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"base"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"."}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"OnNavigatedTo"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"(e);"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    MyUnitytController.AssetsLoaded "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"+="}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" MyUnitytController_AssetsLoaded;"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"}"})}),`
+`,(0,n.jsx)(e.span,{"data-line":""}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"private"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"void"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"MyUnitytController_AssetsLoaded"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"("}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"object"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"sender"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:", "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"EventArgs"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" "}),(0,n.jsx)(e.span,{style:{color:"#B392F0"},children:"e"}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:")"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"{"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#6A737D"},children:"// The Unity view is loaded! \u{1F601}\u{1F389}"})]}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"    "}),(0,n.jsx)(e.span,{style:{color:"#6A737D"},children:"// You can start calling the methods defined in unity scripts"})]}),`
+`,(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"}"})})]})})}),`
+`,(0,n.jsx)(e.p,{children:"This is especially useful if for example you've seed data you need to pass as soon as the Unity view is available."}),`
+`,(0,n.jsxs)(e.p,{children:["Lastly, since it would be jarring to launch a UWP application full screen I like to tweak ",(0,n.jsx)(e.code,{children:"UnityGenerated.cs"})," and changed the preferred launch window mode from full screen to auto:"]}),`
+`,(0,n.jsx)(e.div,{"data-rehype-pretty-code-fragment":"",children:(0,n.jsx)(e.pre,{style:{backgroundColor:"#24292e"},tabIndex:"0","data-language":"csharp","data-theme":"default",children:(0,n.jsxs)(e.code,{"data-language":"csharp","data-theme":"default",children:[(0,n.jsx)(e.span,{"data-line":"",children:(0,n.jsx)(e.span,{style:{color:"#6A737D"},children:"// Change from FullScreen to Auto"})}),`
+`,(0,n.jsxs)(e.span,{"data-line":"",children:[(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:"ApplicationView.PreferredLaunchWindowingMode "}),(0,n.jsx)(e.span,{style:{color:"#F97583"},children:"="}),(0,n.jsx)(e.span,{style:{color:"#E1E4E8"},children:" ApplicationViewWindowingMode.Auto;"})]})]})})}),`
+`,(0,n.jsxs)(e.h2,{id:"thread-safety",children:["Thread-Safety",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#thread-safety",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsxs)(e.p,{children:["We've achieve basic interoperability between UWP and Unity. You can access static variables and methods defined in the ",(0,n.jsx)(e.code,{children:"MonoBehaviour"}),"s and leverage events."]}),`
+`,(0,n.jsx)(e.p,{children:"But if you attempt invoking methods that need to run on Unity's main thread, for example trying to instantiate a new game object, you'll soon encounter this exception:"}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.code,{children:"Load can only be called from the main thread. Constructors and field initializers will be executed from the loading thread when loading a scene. Don't use this function in the constructor or field initializers,  instead move initialization code to the Awake or Start function."})}),`
+`,(0,n.jsx)(e.p,{children:"This is because Unity is not thread-safe, and you're required to perform Unity API calls exclusively from the main thread."}),`
+`,(0,n.jsx)(e.p,{children:"Knowing this limitation, you can easily get around it by creating a Unity singleton that polls for changes. Method invocations are queued, and processed in the singleton's update method to ensure they are called from Unity's main thread."}),`
+`,(0,n.jsxs)(e.p,{children:["I'm my demo I've used Pim DeWitte's UnityMainThreadDispatcher available on ",(0,n.jsx)(e.a,{href:"https://github.com/PimDeWitte/UnityMainThreadDispatcher",children:"github"}),"."]}),`
+`,(0,n.jsxs)(e.h2,{id:"conclusion",children:["Conclusion",(0,n.jsx)(e.a,{"aria-hidden":"true",tabIndex:"-1",href:"#conclusion",children:(0,n.jsx)(e.span,{className:"icon icon-link"})})]}),`
+`,(0,n.jsx)(e.p,{children:"Here's the finished result running on mobile and on desktop."}),`
+`,(0,n.jsxs)(e.p,{children:["You can also check out the project on ",(0,n.jsx)(e.a,{href:"https://github.com/meanme/low-poly-city",children:"github"}),"."]}),`
+`,(0,n.jsx)(e.p,{children:"It was a fun experiment. I do admit, if the end goal was simply displaying a list of prefabs, Unity's native UI could have been a simpler option. But interoperability with UWP opens a vast realm of interesting possibilities."}),`
+`,(0,n.jsx)(e.p,{children:"Imagine for example leveraging Cortana, InkCanvas or even Eye Control to control you Unity view. Could also be a novel way to approach data visualization, animating 3D models in Unity instead of displaying charts."}),`
+`,(0,n.jsx)(e.p,{children:"I hope you found this article interesting and enjoyed it. Let me know if it sparks the creativity for something new."})]})}function v(l={}){let{wrapper:e}=l.components||{};return e?(0,n.jsx)(e,Object.assign({},l,{children:(0,n.jsx)(d,l)})):d(l)}var F=v;function U(l,e){throw new Error("Expected "+(e?"component":"object")+" `"+l+"` to be defined: you likely forgot to import, pass, or provide it.")}return w(x);})();
+;return Component;4:[null,["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_aaf875 __variable_da1155 font-mr bg-light dark:bg-dark","children":[["$","$L6",null,{"id":"theme-switcher","strategy":"beforeInteractive","children":"if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n    document.documentElement.classList.add('dark')\n  } else {\n    document.documentElement.classList.remove('dark')\n  }"}],["$","$L7",null,{}],["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":["$","main",null,{"className":"my-32 w-full dark:bg-dark flex justify-center font-mr","children":["$","div",null,{"className":"relative flex flex-col items-center justify-center","children":[["$","h1",null,{"className":"inline-block text-dark dark:text-light\n      text-6xl font-bold w-full capitalize xl:text-8xl text-center","children":"404"}],["$","h2",null,{"className":"inline-block text-dark dark:text-light\n      text-5xl font-bold w-full capitalize xl:text-6xl text-center mt-4 tracking-wide leading-snug","children":"Page Not Found!"}],["$","$La",null,{"href":"/","className":"self-center mt-8 inline-block rounded-lg border-2 border-solid bg-dark px-4 py-2 font-semibold text-light hover:border-dark hover:bg-light hover:text-dark  dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light ","children":"Go To Home"}]]}]}],"notFoundStyles":[],"childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","blogs","children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$","$L8",null,{"parallelRouterKey":"children","segmentPath":["children","blogs","children",["slug","unity-interoperability","d"],"children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$Lb",[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"headline\":\"Unity interoperability\",\"description\":\"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone.\",\"image\":[\"https://meanme.com/blogs/unity-interoperability/live-00.png\"],\"datePublished\":\"2017-08-10T00:00:00.000Z\",\"dateModified\":\"2017-08-10T00:00:00.000Z\",\"author\":[{\"@type\":\"Person\",\"name\":[\"meanme\"],\"url\":\"https://twitter.com/meanme_com\"}]}"}}],["$","article",null,{"children":[["$","div",null,{"className":"mb-8 text-center relative w-full h-[70vh] bg-dark","children":[["$","div",null,{"className":"w-full z-10 flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2","children":[["$","$La",null,{"href":"/categories/unity","className":"inline-block py-2 sm:py-3 px-6 sm:px-10  bg-dark text-light rounded-full capitalize font-semibold border-2 border-solid border-light hover:scale-105 transition-all ease duration-200 text-sm sm:text-base px-6 text-sm py-2","children":"Unity"}],["$","h1",null,{"className":"inline-block mt-6 font-semibold capitalize text-light text-2xl md:text-3xl lg:text-5xl !leading-normal relative w-5/6","children":"Unity interoperability"}]]}],["$","div",null,{"className":"absolute top-0 left-0 right-0 bottom-0 h-full bg-dark/60 dark:bg-dark/40"}],["$","$Lc",null,{"src":"/blogs/unity-interoperability/live-00.png","placeholder":"blur","blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAMAAADz0U65AAAAVFBMVEX////x7eqdnXisqo7O4vH7+/mRh1/Z6/nO5PWQoF6ek2mdmYnGwa6EgG+bqp/a7fvL1Nmci3GUfUzk4NvAsaO5vI1/oJCsoZGCj0WJfz2As8qqtXM92nF+AAAACXBIWXMAAB2HAAAdhwGP5fFlAAAAPElEQVR4nBXBBxKAIAwAwQMSVKq9/v+fTnZpb/uOvRRSrWvy+eJ+YoxLPpmMD4HNAaqKU4wySx8MIqORH2cUAkmcfukLAAAAAElFTkSuQmCC","alt":"Unity interoperability","width":672,"height":688,"className":"aspect-square w-full h-full object-cover object-center","priority":true,"sizes":"100vw"}]]}],["$","div",null,{"className":"px-2  md:px-10 bg-accent dark:bg-accentDark text-light dark:text-dark py-2 flex items-center justify-around flex-wrap text-lg sm:text-xl font-medium mx-5  md:mx-10 rounded-lg","children":[["$","time",null,{"className":"m-3","children":"August 10, 2017"}],["$","div",null,{"className":"m-3","children":"5 min read"}],["$","$La",null,{"href":"/categories/unity","className":"m-3","children":["#","Unity"]}]]}],["$","div",null,{"className":"grid grid-cols-12  gap-y-8 lg:gap-8 sxl:gap-16 mt-8 px-5 md:px-10","children":[["$","div",null,{"className":"col-span-12  lg:col-span-4","children":["$","details",null,{"className":"border-[1px] border-solid border-dark dark:border-light text-dark dark:text-light rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto","open":true,"children":[["$","summary",null,{"className":"text-lg font-semibold capitalize cursor-pointer","children":"Table Of Content"}],["$","ul",null,{"className":"mt-4 font-in text-base","children":[["$","li","#overview",{"className":"py-1","children":["$","a",null,{"href":"#overview","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Overview"}]]}]}],["$","li","#requirements",{"className":"py-1","children":["$","a",null,{"href":"#requirements","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Requirements"}]]}]}],["$","li","#build-settings",{"className":"py-1","children":["$","a",null,{"href":"#build-settings","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Build Settings"}]]}]}],["$","li","#integrating-unity-in-uwp",{"className":"py-1","children":["$","a",null,{"href":"#integrating-unity-in-uwp","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Integrating Unity in UWP"}]]}]}],["$","li","#assets-loaded",{"className":"py-1","children":["$","a",null,{"href":"#assets-loaded","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Assets Loaded"}]]}]}],["$","li","#thread-safety",{"className":"py-1","children":["$","a",null,{"href":"#thread-safety","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Thread-Safety"}]]}]}],["$","li","#conclusion",{"className":"py-1","children":["$","a",null,{"href":"#conclusion","data-level":"two","className":"data-[level=two]:pl-0  data-[level=two]:pt-2 data-[level=two]:border-t border-solid border-dark/40 data-[level=three]:pl-4 sm:data-[level=three]:pl-6 flex items-center justify-start ","children":[null,["$","span",null,{"className":"hover:underline","children":"Conclusion"}]]}]}]]}]]}]}],["$","$Ld",null,{"blog":{"title":"Unity interoperability","publishedAt":"2017-08-10T00:00:00.000Z","updatedAt":"2017-08-10T00:00:00.000Z","description":"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone.","image":{"filePath":"../public/blogs/unity-interoperability/live-00.png","relativeFilePath":"../../public/blogs/unity-interoperability/live-00.png","format":"png","height":688,"width":672,"aspectRatio":0.9767441860465116,"blurhashDataUrl":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAMAAADz0U65AAAAVFBMVEX////x7eqdnXisqo7O4vH7+/mRh1/Z6/nO5PWQoF6ek2mdmYnGwa6EgG+bqp/a7fvL1Nmci3GUfUzk4NvAsaO5vI1/oJCsoZGCj0WJfz2As8qqtXM92nF+AAAACXBIWXMAAB2HAAAdhwGP5fFlAAAAPElEQVR4nBXBBxKAIAwAwQMSVKq9/v+fTnZpb/uOvRRSrWvy+eJ+YoxLPpmMD4HNAaqKU4wySx8MIqORH2cUAkmcfukLAAAAAElFTkSuQmCC"},"isPublished":true,"author":"meanme","tags":["Unity","UWP"],"body":{"raw":"$e","code":"$f"},"_id":"unity-interoperability/index.mdx","_raw":{"sourceFilePath":"unity-interoperability/index.mdx","sourceFileName":"index.mdx","sourceFileDir":"unity-interoperability","contentType":"mdx","flattenedPath":"unity-interoperability"},"type":"Blog","url":"/blogs/unity-interoperability","readingTime":{"text":"5 min read","minutes":4.415,"time":264900,"words":883},"toc":[{"level":"two","text":"Overview","slug":"overview"},{"level":"two","text":"Requirements","slug":"requirements"},{"level":"two","text":"Build Settings","slug":"build-settings"},{"level":"two","text":"Integrating Unity in UWP","slug":"integrating-unity-in-uwp"},{"level":"two","text":"Assets Loaded","slug":"assets-loaded"},{"level":"two","text":"Thread-Safety","slug":"thread-safety"},{"level":"two","text":"Conclusion","slug":"conclusion"}]}}]]}]]}]],null],"segment":"__PAGE__?{\"slug\":\"unity-interoperability\"}"},"styles":[]}],"segment":["slug","unity-interoperability","d"]},"styles":[]}],"segment":"blogs"},"styles":[]}],["$","$L10",null,{}]]}]}],null]
+5:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Unity interoperability | Matteo's blog"}],["$","meta","2",{"name":"description","content":"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone."}],["$","link","3",{"rel":"manifest","href":"/manifest.webmanifest"}],["$","meta","4",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","5",{"name":"robots","content":"index, follow"}],["$","meta","6",{"name":"googlebot","content":"index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","7",{"property":"og:title","content":"Unity interoperability"}],["$","meta","8",{"property":"og:description","content":"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone."}],["$","meta","9",{"property":"og:url","content":"https://meanme.com/blogs/unity-interoperability"}],["$","meta","10",{"property":"og:site_name","content":"Matteo's blog"}],["$","meta","11",{"property":"og:locale","content":"en_US"}],["$","meta","12",{"property":"og:image","content":"https://meanme.com/blogs/unity-interoperability/live-00.png"}],["$","meta","13",{"property":"og:type","content":"article"}],["$","meta","14",{"property":"article:published_time","content":"2017-08-10T00:00:00.000Z"}],["$","meta","15",{"property":"article:modified_time","content":"2017-08-10T00:00:00.000Z"}],["$","meta","16",{"property":"article:author","content":"meanme"}],["$","meta","17",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","18",{"name":"twitter:title","content":"Unity interoperability"}],["$","meta","19",{"name":"twitter:description","content":"Ensuring web accessibility is vital for reaching a broader audience and creating inclusive digital experiences. This blog highlights essential web accessibility best practices, guidelines, and tools to make your websites accessible to everyone."}],["$","meta","20",{"name":"twitter:image","content":"https://meanme.com/blogs/unity-interoperability/live-00.png"}],["$","link","21",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","link","22",{"rel":"apple-touch-icon","href":"/apple-icon.png?1f3d3abd51ecae45","type":"image/png","sizes":"180x180"}],["$","meta","23",{"name":"next-size-adjust"}]]
+b:null
