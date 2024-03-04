@@ -18,7 +18,6 @@ jobs:
           npm ci
           npm run build
           npm run postbuild
-          npm run export
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
