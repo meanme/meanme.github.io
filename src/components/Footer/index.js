@@ -94,7 +94,7 @@ const Footer = () => {
           sitemap.xml
         </Link>
         <div className="text-center">
-          Theme by <a href="codebucks27" className="underline" target="_blank">codebucks27</a>
+          Theme by <a href="https://github.com/codebucks27/Nextjs-tailwindcss-blog-template" className="underline" target="_blank">codebucks27</a>
         </div>
       </div>
     </footer>
