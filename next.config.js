@@ -4,7 +4,6 @@ const { withContentlayer } = require("next-contentlayer")
 
 const nextConfig = {
     output: "export",
-    distDir: 'out',
     reactStrictMode: true,
     compiler: {
         removeConsole: true,
