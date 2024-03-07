@@ -1,0 +1,202 @@
+---
+title: "Intro to Composition Animations"
+description: "Galactic UWP connected animations"
+image: "../../public/blogs/intro-to-composition-animations/composition-animation-demo-complete-60-1.gif"
+publishedAt: "2017-07-11"
+updatedAt: "2017-07-11"
+author: "meanme"
+isPublished: true
+tags:
+- UWP
+- Animation
+---
+
+### An animated galaxy
+
+In this article we're going to create a small galaxy using some of the available animation systems available with the Windows.UI.Composition. Here's a quick look of what the completed project is going to look like.
+
+<Image
+  src="/blogs/intro-to-composition-animations/composition-animation-demo-complete-60-1.gif"
+  width="500"
+  height="500"
+  alt="Completed UWP Galaxy"
+  sizes="100vw"
+/>
+
+By default some UWP components have subtle animations, ListView and GridView for example will animate the entrance and removal of items.
+Additionally, you can define storyboard animations directly in your XAML code and trigger them with VisualStateManager's states.
+
+In some other cases, you might want to animate visual elements directly, accessing individual properties, or maybe orchestrating multiple animations together.
+For those scenarios Composition animations come in handy as they allow for direct access to Visual Layer, granting greater flexibility.
+Composition animations come in two flavors: Keyframe animations and Expression animations. For our galaxy demo we're going to employ both. So let's dive into the code.
+
+### Requirements
+The requirements for our project are simple: we'd like to have a planet rotating on an orbit around the main star, as well as a satellite completing its rotation 3 times as fast as the planet. I'm going to start from an empty project and focus on the XAML view at first, and then move on to the code behind to add the required logic.
+
+### XAML View
+Let's go ahead and create a new project, then add the following code to MinPage.xml:
+
+``` xml
+<Grid x:Name="Orbit">
+    <Grid x:Name="Planet">
+        <Ellipse Width="30" Height="30" Fill="DarkGreen"/>
+        <Ellipse x:Name="Satellite" Width="15" Height="15" Fill="DarkGray"/>
+    </Grid>
+</Grid>
+```
+
+If you now look at the preview you'll see 3 ellipses stacked on top of each other. Nothing special so far but is worth pointing out both the outer orbit and the planet's orbit are grouped using Grid elements. This makes it easier to apply the rotation to the grids and affect everything inside at once.
+
+<Image
+  src="/blogs/intro-to-composition-animations/xaml-00-1.png"
+  width="387"
+  height="254"
+  alt="XAML - 00"
+  sizes="100vw"
+/>
+
+Nothing much going on so far so let's start working on the animations in the code behind file. Open MainPage.xaml.cs and implement a new handler for the `Loaded` event.
+Inside the handler we're going to get a reference to the visual elements we need, define the animations and use the animations to change some of the visual objects animatable properties.
+
+### Visual objects
+Before diving into the code and spinning celestial bodies around, what is a [Visual](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Composition.Visual) object? In order to be rendered our XAML controls still have to go through UWP's Visual Layer. XAML controls are a text representation that still needs to be translated into a format that can be rendered on a screen.
+[ElementCompositionPreview](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Hosting.ElementCompositionPreview) allows developers to get access to the Visual instance given its corresponding component.
+
+Another important class worth researching when working with animations is UWP's [Compositor](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Composition.Compositor) - a factory for several Windows.UI.Composition objects, including the animations we're going to need for this demo.
+
+### MainPage Code Behind
+We're ready to work on MainPage.xaml.cs - open the file and add a new `Loaded` event handler
+
+``` csharp
+public MainPage()
+{
+    this.InitializeComponent();
+    Loaded += MainPage_Loaded;
+}
+
+private void MainPage_Loaded(object sender, RoutedEventArgs e)
+{
+    // Our code will be here
+}
+```
+
+We’re going to create our first KeyFrame animation to perform a full orbit every 10 seconds. Add the following code inside the Loaded handler:
+
+``` csharp
+// Get a reference to the compositor object for the current page
+Compositor compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+
+// Get a reference to the outer orbit visual object
+orbitVisual = ElementCompositionPreview.GetElementVisual(Orbit);
+
+// Create a new animation using Compositor's factory methods
+var orbitAnimation = compositor.CreateScalarKeyFrameAnimation();
+// This is how long the animation is going to last
+orbitAnimation.Duration = TimeSpan.FromSeconds(10);
+
+// How many times is the animation going to repeat - infinite loop
+orbitAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
+
+// At the end of the animation the end value is 360, and we're using a linear easing 
+orbitAnimation.InsertKeyFrame(1f, 360, compositor.CreateLinearEasingFunction());
+
+// By default the Grid's center will be the top left corner of the page, let's center it
+orbitVisual.CenterPoint = new Vector3((float)Window.Current.Bounds.Width / 2, (float)Window.Current.Bounds.Height / 2, 0);
+
+// Start our animation
+orbitVisual.StartAnimation(nameof(Visual.RotationAngleInDegrees), orbitAnimation);
+```
+
+If you try to run the application you'll see… absolutely no change! The sun, the planet, and its satellite are still stacked on top of each other and while they're rotating there's no way of telling. Let's fix that by offsetting the planet:
+
+``` csharp
+Visual planetVisual = ElementCompositionPreview.GetElementVisual(Planet);
+planetVisual.TransformMatrix = Matrix4x4.CreateTranslation(new Vector3(100, 0, 0));
+```
+
+Now the planet correctly rotates around the sun. 
+
+<Image
+  src="/blogs/intro-to-composition-animations/composition-animation-demo-planet-only.gif"
+  width="500"
+  height="500"
+  alt="First Planet"
+  sizes="100vw"
+/>
+
+If you're curious about easing functions I recommend [GSAP's ease visualizer](https://greensock.com/ease-visualizer), is a great aid to pick the function that's right for your needs
+
+
+### Enter Satellite
+The next step is to introduce a satellite that perform 3 rotations around the planet while spinning around the sun. We could use another keyframe animation and simply change the time or the final angle. But instead we're going to take advantage of ExpressionAnimations. We already know how to animate the angle, all we need is to use the value in an expression to determine the satellite's rotation!
+
+We could read the rotation angle value directly from the Orbit visual object but there's a better way. As mentioned earlier Compositor is a factory for Composition related objects. We are going to take advantage of the nifty [CompositionPropertySet](https://docs.microsoft.com/en-us/uwp/api/windows.ui.composition.compositionpropertyset) to store the orbit's angle. 
+
+The property set is a store for key-value pairs. Is very handy for values you are going to re-use in your code - an offset for example - and you can even apply animations to change the values over time, like for the rotation angle in our galaxy:
+
+``` csharp
+var propertySet = compositor.CreatePropertySet();
+propertySet.InsertScalar("angle", 0);
+
+var angleAnimation = compositor.CreateScalarKeyFrameAnimation();
+angleAnimation.Duration = TimeSpan.FromSeconds(10);
+angleAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
+angleAnimation.InsertKeyFrame(1f, 360, compositor.CreateLinearEasingFunction());
+propertySet.StartAnimation("angle", angleAnimation);
+```
+
+The animation is the same we used to animate the angle of the orbit, but instead of applying to the `RotationAngleInDegrees` we are targeting the `angle` in our property set. 
+The generic angleAnimation is applied the "angle" of the property set. The angle is now animated inside the property set and ready to be used to rotate the satellite around the planet.
+
+``` csharp
+var satelliteVisual = ElementCompositionPreview.GetElementVisual(Satellite);
+// Offset the satellite from the planet
+satelliteVisual.TransformMatrix = Matrix4x4.CreateTranslation(new Vector3(30, 0, 0));
+
+// Adjust the center point to be exactly in the center of the satellite
+satelliteVisual.CenterPoint = new Vector3((float)Satellite.ActualWidth / 2, (float)Satellite.ActualHeight / 2, 0);
+
+var satelliteAnimation = compositor.CreateExpressionAnimation();
+
+// The expression that controls the value of the animatable object
+satelliteAnimation.Expression = "3 * propertySet.angle";
+// Fill in the necessary variables and parameters used in the expression
+satelliteAnimation.SetReferenceParameter("propertySet", propertySet);
+
+satelliteVisual.StartAnimation(nameof(Visual.RotationAngleInDegrees), satelliteAnimation);
+```
+
+Is worth noting that unlike the key frame animation where we explicitly had to declare what we were animating - in our case a scalar for the angle (`CreateScalarKeyFrameAnimation`) - expression animations don't have this constraint. Instead you'll have to make sure the property you're targeting with your animation and the value returned by the expression animation match, let it be a scalar for the angle like in our case, or a Vector2 for the Scale and so on.
+
+Also, make sure the names of the variables in your expression match those you are passing in as reference parameters.
+Running the application now you'll see the final result. I changed `App.xml` theme to use `RequestedTheme="Dark"` for a nicer galaxy.
+
+<Image
+  src="/blogs/intro-to-composition-animations/composition-animation-demo-planet-satellite.gif"
+  width="500"
+  height="500"
+  alt="Completed UWP Galaxy"
+  sizes="100vw"
+/>
+
+### Stars and Beyond
+You can check the completed solution on [GitHub](https://github.com/meanme/composition-animations-intro). To make the universe a little more interesting and show off few more expression functions I've added some stars to our galaxy. The opacity will flicker from 0.3 to 1 leveraging the cosine of the angle in our property set.
+
+<Image
+  src="/blogs/intro-to-composition-animations/composition-animation-demo-complete-60.gif" 
+  width="500"
+  height="500"
+  alt="Completed UWP Galaxy With Stars"
+  sizes="100vw"
+/>
+
+Additionally, there's a new event handler to center the rotation upon resizing of the window.
+
+### Conclusion
+Hope you liked this demo and found it interesting. And let me know if you have questions.
+In the next post I've used Composition Animations in a real world scenario and created a [sticky shrinking header](/sticky-header).
+
+
+
+
+

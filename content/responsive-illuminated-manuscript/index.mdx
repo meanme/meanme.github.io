@@ -1,0 +1,162 @@
+---
+title: "Responsive Illuminated Manuscript"
+description: "Animating a vector capital letter with lottie"
+image: "../../public/blogs/responsive-illuminated-manuscript/illuminated-manuscript-header.jpg"
+publishedAt: "2019-04-04"
+updatedAt: "2019-04-04"
+author: "meanme"
+isPublished: true
+tags:
+- Animation
+- JavaScript
+- Lottie
+---
+
+---
+title: Responsive Illuminated Manuscript
+date: 2019-04-04 19:42:40
+tags:
+  - JavaScript
+  - Animations
+  - Lottie
+---
+
+### Overview
+Back in the Middle Ages, must have been a spectacle to lay eye on an [Illuminated Manuscript](https://www.khanacademy.org/partner-content/getty-museum/getty-manuscripts/a/what-is-an-illuminated-manuscript).
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/illuminated-manuscript-header.jpg"
+  width="2854"
+  height="1231"
+  alt="Final Sticky Header Result"
+  sizes="100vw"
+/>
+
+
+The fine illustrations, the rich decorative elements, and the beautiful capital letters, bring typography and art together.
+
+After visiting the [Getty's Manuscripts](http://www.getty.edu/art/manuscripts/) I started asking myself - what would a script look like on a web page?
+Given the incredible amount of minute details, how much could it be appreciated on different form factors?
+
+It was fun to come up with a simple "responsive" example that changes the Level Of Detail (LoD) of the initial letter based on the width of the page, powered by the power of Lottie.
+Depending on the available width, I wanted to simplify the design, or show more intricacy.
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/animated-responsive.gif"
+  width="480"
+  height="358"
+  alt="Responsive Capital Letter Animation"
+  sizes="100vw"
+/>
+
+### Workflow
+I started by identifying some states I wanted to map to small, medium, and large screen sizes.
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/display-states.png"
+  width="1200"
+  height="300"
+  alt="Small, medium, and large states"
+  sizes="100vw"
+/>
+
+After creating the graphics, I animated the shapes in After Effects in order to author the animation data to be used in Lottie.
+The animation timeline starts at the "small" state and progresses to the "large" state.
+
+I didn't want to have any animation playing on load, and the state transition be something discoverable only by resizing your page.
+
+#### Illustrator Workflow
+I tried to create the letter in Illustrator identifying elements I wanted to show in each state:
+- Capital E
+- Vines
+- Flowers
+
+For all the vines I used the pen tool, this allows to animate the paths by defining a trimming offset as we'll see later on in After Effects.
+
+To simplify the workflow, I prefer to separate each shape into its own layer.
+Make sure the artboard is configure correctly as it will determine the viewBox values of your SVG once exported.
+
+To create the gold letter I used a freeform gradient, but this doesn't have any direct counterpart in the web world. These shapes will be rasterized and exported as images, but is good to have a clear understand of what features are [not supported](http://airbnb.io/lottie/#/after-effects?id=no-expressions-or-effects) or are going to use image assets.
+
+You can inspect the final Illustrator file [here](/blogs/responsive-illuminated-manuscript/capital-letter.ai).
+
+#### After Effects Workflow
+Once the graphics were completed in Illustrator it was time to animate them in After Effects.
+Import your graphics as composition, and select Layer Size as Footage Dimension.
+
+In your composition, select the layers you'd like to animates, right click and select
+Create ▶ Create Shapes From Vector Layer
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/create-shapes-from-vector-layer.png" 
+  width="1506"
+  height="1170"
+  alt="Create Shapes From Vector Layer"
+  sizes="100vw"
+/>
+
+
+You can now animate the Contents and the Transform for your graphics. In the Illuminated Manuscript animation I used only two techniques:
+
+##### Trim Paths for the vines
+Expand the shape layers and you'll see the *Add* button next to *Contents*. 
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/vector-shape-layer.png" 
+  width="1063"
+  height="138"
+  alt="Content add"
+  sizes="100vw"
+/>
+
+Click it and select *Trim Path*. You can now animate the offset at the Start and End of the path. 
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/trim-paths.png" 
+  width="1063"
+  height="306"
+  alt="Trim paths"
+  sizes="100vw"
+/>
+
+Clicking on the stopwatch icon, you'll add a keyframe in the timeline. Play around with the start and end values to find something suitable for your graphics.
+
+##### Transform for leaves and flowers
+Animating leaves and flowers is more straightforward. I simply manipulated *Scale*, *Rotation*, and *Opacity* in the Transform group.
+
+Here's what your layers might look like at this end of the process:
+
+<Image
+  src="/blogs/responsive-illuminated-manuscript/after-effects-layers.png" 
+  width="2663"
+  height="916"
+  alt="Animate vector shape layers"
+  sizes="100vw"
+/>
+
+For this example I only used linear animations, but you can add a lot more character using easing curves. Try selecting the keyframes and add an Easy Ease curve (F9 + Shift) to notice the difference. The Graph Editor offers even greater control.
+
+Finally, using the [Bodymovin](https://aescripts.com/bodymovin/) plugin, export the animation data for your composition.
+
+You can inspect the final After Effects file [here](/blogs/responsive-illuminated-manuscript/capital-letter.aep).
+
+#### lottie-web workflow
+To pull everything together I used [lottie-web](https://github.com/airbnb/lottie-web), and looked at [react-lottie](https://github.com/chenqingspring/react-lottie) to get started.
+
+I created a small react app to determine the initial state of the capital letter based on the width. When a resize event is triggered, based on the size of the page I decide whether the animation should play, and in which [direction](https://github.com/airbnb/lottie-web#setdirectiondirection).
+
+I subscribe to [enterFrame](https://github.com/airbnb/lottie-web#setdirectiondirection) events to check if the desired state is reached, and stop the playback.
+For more complex scenarios, you can also specify [animation segments](https://github.com/airbnb/lottie-web#playsegmentssegments-forceflag).
+
+### Source and Demo
+
+You can check out the final project from [github](https://github.com/meanme/illuminated-manuscript-lottie), or preview the [CodeSandbox](https://7o36qor5nq.codesandbox.io).
+
+### Conclusion
+While admittedly unpractical, I hope you enjoyed the idea of animated typography in your pages.
+The execution could be improved, and depending on your needs, simple CSS animations, or even animating [stroke-dashoffset](https://css-tricks.com/svg-line-animation-works/) property might suffice.
+
+Interestingly enough, the SVG specs at one point defined animations (or [SMIL - Synchronized Multimedia Integration Language](https://www.w3.org/TR/SMIL3/)), and there were proposals to support [adaptive Leven of Detail](http://www.svgopen.org/2004/papers/AdaptiveLoD/) graphics, but due the lack of support, and given how much easier is to author animations in After Effects, in my opinion Lottie is currently the best tool for the job.
+
+Hope you enjoyed the write up, and took some time to admire an Illuminated Manuscript online.
+
