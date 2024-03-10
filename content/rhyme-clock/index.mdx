@@ -1,0 +1,114 @@
+---
+title: "Rhymes Clock"
+description: "An unpractical time piece"
+image: "../../public/blogs/rhyme-clock/whimsical-clock-cover.png"
+publishedAt: "2024-03-09"
+updatedAt: "2024-03-09"
+author: "meanme"
+isPublished: true
+tags:
+- IoT
+---
+
+## A rhyme that's right on time
+"In the realm of ticks and chimes so fine, whimsical clock, what's the time? With hands that dance and numbers play, share your secret, don't delay!"
+
+That's one long way to ask "What time is it?". Courtesy of ChatGPT.
+
+I've been using generative AI almost daily, speeding up development, summarizing documents, to answering personal queries, and consolidating search results. AI is definitely a great productivity boost.
+So I wanted to find a contrarian use case. What's something simple and self-explanatory that could be made less useful (and hopefully more novel and fun) with AI?
+
+What about an AI generated rhyme to print out the time?
+
+Testing out few results for few timestamps I enjoyed the responses I got, so I was intrigued by the idea.
+
+## All the minutes in one day 
+Turns out chat interfaces will only spew a handful of entries when trying to generate a good dataset. For this project I wanted to get 1440 rhymes, one for each minute in the day.
+
+Instead of querying the chat I've used the openai library. Here's a small python script to iterate through all the minutes in a day.
+
+It was interesting to spot check the results. For the purpose of this project it didn't matter, but it's worth noting some of the results were a bit off. Cost wasn't a concern for so few entries but picking a good model also affect the responses. I went with 'chatgpt4'
+
+``` python
+import time
+from datetime import datetime, timedelta
+import openai
+
+openai.api_key = "<your-open-ai-key>"
+
+base_prompt = "Generate a two sentences rhyme of 20 words of less that includes the timestamp {} spelled out in words. The timestamp can appear anywhere in the rhyme, and the sentences must rhyme."
+start_time = datetime(2024, 3, 9, 0, 0)
+end_time = datetime(2024, 3, 10, 0, 0)
+
+def generate_response(prompt):
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+    )   
+    return response.choices[0].message.content
+
+with open("output.txt", "w", encoding="utf-8") as f:
+    while start_time < end_time:
+        timestamp = start_time.strftime("%H:%M")
+        prompt = base_prompt.format(timestamp)
+        response = generate_response(prompt)
+        f.write(f"{timestamp}: {response}\n\n")
+        start_time += timedelta(minutes=1)
+
+```
+
+## Hardware time
+With the timestamps to rhymes file ready, I realized a nice use was with a controller board. I already had a Real-Time Clock and screen modules lying around and there isn't really much more to it.
+
+It's worth calling out that if you're using an Arduino Uno or anything with very limited EEPROM, you might need another storage mechanism to store and retrieve the rhymes. Depending on the responses you got when generating the rhymes, the 1440 entries are still few hundred KBs and low memory devices cannot store that much data. 
+
+Here's a circuit schematics as reference:
+
+<Image
+  src="/blogs/rhyme-clock/rhyme-clock-circuit.png"
+  width="1260"
+  height="1504"
+  alt="Rhyme clock circuit schematics"
+  sizes="100vw"
+/>
+
+Plug your board, upload, and try it out ⬆️
+Formatting can be improved accounting for the screen size, some rhymes are not accurate or make any sense, and  would be better with an enclosure, but it was a fun project to keep on my desk for few days.
+
+
+
+<Image
+  src="/blogs/rhyme-clock/rhyme-clock-0305.png"
+  width="640"
+  height="360"
+  alt="Clock running on a controller"
+  sizes="100vw"
+/>
+
+**03:05**
+_At fifteen after five, stories come alive_
+
+<Image
+  src="/blogs/rhyme-clock/rhyme-clock-0947.jpeg"
+  width="640"
+  height="360"
+  alt="Clock running on a controller"
+  sizes="100vw"
+/>
+
+**09:47**
+_At nine forty-seven, the night's embrace, stars trace, in lunar grace, a nocturnal space._
+
+<Image
+  src="/blogs/rhyme-clock/rhyme-clock-1004.png"
+  width="640"
+  height="360"
+  alt="Clock running on a controller"
+  sizes="100vw"
+/>
+
+**10:04**
+_At then and four, the night's encore, shadows explore, in moonlight's lore, moments to store._

@@ -49,15 +49,6 @@ const Footer = () => {
         >
           <LinkedinIcon className="fill-light dark:fill-dark hover:scale-125 transition-all ease duration-200" />
         </a>
-        {/* <a
-          href={siteMetadata.twitter}
-          className="inline-block w-6 h-6 mr-4"
-          aria-label="Reach out to me via Twitter"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <TwitterIcon className="hover:scale-125 transition-all ease duration-200" />
-        </a> */}
         <a
           href={siteMetadata.github}
           className="inline-block w-6 h-6 mr-4 fill-light"
@@ -66,6 +57,15 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <GithubIcon className="fill-light dark:fill-dark  hover:scale-125 transition-all ease duration-200" />
+        </a>
+        <a
+          href={siteMetadata.twitter}
+          className="inline-block w-6 h-6 mr-4"
+          aria-label="Reach out to me via Twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TwitterIcon className="hover:scale-125 transition-all ease duration-200" />
         </a>
         {/* <a
           href={siteMetadata.dribbble}
